@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="description" content="Jeremy Miller is an audio engineer: live mixing, studio mixing, remote recording, mastering, live audio design, sound system tuning, corporate A1 mixing and broadcast.">
+<meta name="theme-color" content="#0d1116">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jeremy Miller Audio">
+<meta property="og:title" content="Jeremy Miller Audio">
+<meta property="og:description" content="Jeremy Miller is an audio engineer: live mixing, studio mixing, remote recording, mastering, live audio design, sound system tuning, corporate A1 mixing and broadcast.">
+<meta property="og:url" content="https://www.jeremymilleraudio.com/">
+<meta property="og:image" content="https://www.jeremymilleraudio.com/gallery/g50.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<title>Jeremy Miller Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: a mixing console. The hero is a master-bus meter bridge, and the services are joined channel strips with scribble labels and faders. */
+:root {
+  --bg: #eceff1;
+  --surface: #f8f9fa;
+  --ink: #11161b;
+  --muted: #56616b;
+  --line: #cfd6db;
+  --accent: #a85a06;
+  --accent-ink: #ffffff;
+  --meter-off: #d5dce1;
+  --ok: #2f9e5b;
+  --warn: #d68f12;
+  --clip: #cf3b2a;
+  --scr-bg: #05090f;
+  --scr-bg-rgb: 5, 9, 15;
+  --scr-line: rgba(120, 190, 255, 0.16);
+  --scr-dim: #7f93a8;
+  --scr-ink: #e4f7ff;
+  --scr-cyan: #38e6ff;
+  --display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1116;
+    --surface: #151b22;
+    --ink: #e9edf0;
+    --muted: #98a3ad;
+    --line: #26303a;
+    --accent: #f0a33a;
+    --accent-ink: #1a1204;
+    --meter-off: #222b34;
+    --ok: #3fbf72;
+    --warn: #e8ac2f;
+    --clip: #ef5b49;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1116;
+  --surface: #151b22;
+  --ink: #e9edf0;
+  --muted: #98a3ad;
+  --line: #26303a;
+  --accent: #f0a33a;
+  --accent-ink: #1a1204;
+  --meter-off: #222b34;
+  --ok: #3fbf72;
+  --warn: #e8ac2f;
+  --clip: #ef5b49;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.inner { max-width: 1120px; margin-inline: auto; }
+.sec { padding-block: clamp(48px, 8vw, 96px); }
+
+.eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  margin: 0 0 18px;
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+}
+.eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h2 {
+  font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 800; font-stretch: 108%;
+  line-height: 1.05; letter-spacing: -0.01em;
+}
+
+/* Header */
+.top {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 10px 28px; padding-block: 20px; border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: var(--display); font-weight: 800; font-stretch: 115%;
+  font-size: 0.95rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+}
+.nav { display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--mono); font-size: 13px; }
+.nav a { text-decoration: none; color: var(--muted); padding-block: 4px; }
+.nav a:hover { color: var(--ink); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: clamp(28px, 5vw, 64px); align-items: center; padding-block: clamp(40px, 7vw, 88px); }
+.hero > * { min-width: 0; }
+.hero h1 {
+  font-size: clamp(2.3rem, 6.6vw, 4.9rem); font-weight: 850; font-stretch: 112%;
+  line-height: 0.98; letter-spacing: -0.02em; margin-bottom: 24px;
+}
+.lede { font-size: 1.15rem; max-width: 52ch; margin: 0 0 30px; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 22px; border-radius: 4px; border: 1.5px solid var(--line);
+  font: 600 0.95rem var(--body); text-decoration: none; color: var(--ink);
+  background: transparent; cursor: pointer;
+}
+.btn:hover { border-color: var(--ink); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { border-color: var(--ink); }
+
+/* Instrument panel */
+.scope {
+  position: relative; padding: 16px 18px 18px; border-radius: 10px; color: var(--scr-ink);
+  background: radial-gradient(120% 90% at 85% 0%, #0d1b2c 0%, var(--scr-bg) 62%);
+  border: 1px solid rgba(56, 230, 255, 0.28);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 0 48px -12px rgba(56, 230, 255, 0.3), inset 0 0 60px rgba(56, 230, 255, 0.04);
+}
+.scope::before, .scope::after { content: ""; position: absolute; width: 16px; height: 16px; border: 2px solid var(--scr-cyan); pointer-events: none; }
+.scope::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; border-top-left-radius: 10px; }
+.scope::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; border-bottom-right-radius: 10px; }
+.scope-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.scope-title { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
+.scope-title b { font: 800 1.5rem/1 var(--display); font-stretch: 112%; letter-spacing: 0.04em; }
+.scope-title span { font: 500 10px/1.3 var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--scr-dim); }
+.chips { display: flex; gap: 8px; flex: none; }
+.chips span {
+  display: inline-flex; align-items: center; gap: 8px; padding: 5px 9px; border-radius: 4px;
+  border: 1px solid var(--scr-line); background: rgba(120, 190, 255, 0.05);
+  font: 500 11px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.chips span::after { content: ""; border: 4px solid transparent; border-top-color: var(--scr-dim); border-bottom: 0; }
+.scope-main { display: flex; gap: 10px; height: clamp(190px, 30vw, 250px); }
+#rta { display: block; flex: 1 1 0; min-width: 0; width: 100%; height: 100%; }
+#lr { display: block; flex: none; width: 62px; height: 100%; }
+.scope-foot {
+  display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 18px; align-items: center;
+  margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--scr-line);
+}
+#field { display: block; width: 150px; height: 150px; }
+.reads { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; min-width: 0; }
+.read { min-width: 0; }
+.read .lbl { display: block; margin-bottom: 3px; font: 500 10px/1.2 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--scr-dim); }
+.read b { display: block; font: 600 1rem/1.1 var(--mono); font-variant-numeric: tabular-nums; }
+.read.big, .read.corr { grid-column: 1 / -1; }
+.read.big b { font: 700 clamp(2rem, 5vw, 2.6rem)/1 var(--display); font-stretch: 108%; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.read.big b small { margin-left: 8px; font: 500 11px var(--mono); letter-spacing: 0.14em; color: var(--scr-dim); }
+.corr-bar { position: relative; height: 4px; margin-top: 8px; border-radius: 2px; background: linear-gradient(90deg, #12283b, #1fd6a0 70%, #7dff9a); }
+.corr-bar i { position: absolute; top: -4px; left: 98%; width: 3px; height: 12px; margin-left: -1px; border-radius: 1px; background: var(--scr-ink); box-shadow: 0 0 8px var(--scr-cyan); }
+@media (max-width: 980px) { .hero { grid-template-columns: 1fr; } .scope { max-width: 560px; } }
+@media (max-width: 480px) { .scope-title span { display: none; } }
+@media (max-width: 420px) {
+  .scope-foot { grid-template-columns: 118px minmax(0, 1fr); gap: 14px; }
+  #field { width: 118px; height: 118px; }
+  .reads { grid-template-columns: 1fr; gap: 8px; }
+  .read.big, .read.corr { grid-column: auto; }
+}
+
+/* Photo band */
+.shot { margin: 0; }
+.shot img {
+  display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; object-position: 60% 30%;
+  border-radius: 8px; border: 1px solid var(--line); background: var(--meter-off);
+}
+@media (max-width: 640px) { .shot img { aspect-ratio: 4 / 3; object-position: 62% 30%; } }
+
+/* Services */
+.section-head { max-width: 62ch; margin-bottom: 36px; }
+.section-head p { margin: 16px 0 0; color: var(--muted); font-size: 1.05rem; }
+.strips { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.strip { background: var(--surface); padding: 20px 22px 24px; min-width: 0; }
+.strip-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 22px; }
+.tag {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--muted);
+  border: 1px dashed var(--line); padding: 3px 8px; border-radius: 2px;
+}
+.fader { position: relative; width: 6px; height: 44px; margin-right: 7px; border-radius: 3px; background: var(--meter-off); }
+.fader::after {
+  content: ""; position: absolute; left: -7px; width: 20px; height: 9px; border-radius: 2px;
+  bottom: calc(var(--f) - 4.5px);
+  background: linear-gradient(to bottom, var(--ink) 0 3px, var(--accent) 3px 5px, var(--ink) 5px 9px);
+}
+.strip h3 { font-size: 1.25rem; font-weight: 750; font-stretch: 105%; margin-bottom: 8px; }
+.strip p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+
+/* Gallery */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; }
+.filters button {
+  padding: 9px 14px; border: 1px solid var(--line); border-radius: 4px; background: transparent; color: var(--muted);
+  font: 500 12px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+}
+.filters button:hover { color: var(--ink); border-color: var(--ink); }
+.filters button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.filters .n { margin-left: 8px; opacity: 0.6; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); grid-auto-rows: clamp(150px, 17vw, 200px); grid-auto-flow: dense; gap: 10px; }
+.gallery figure { position: relative; margin: 0; min-width: 0; overflow: hidden; border-radius: 6px; background: var(--meter-off); }
+.gallery img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.gallery figcaption {
+  position: absolute; inset: auto 0 0 0; padding: 26px 12px 10px;
+  font: 500 11px/1.35 var(--mono); letter-spacing: 0.06em; color: #fff;
+  background: linear-gradient(to top, rgba(5, 9, 15, 0.88), rgba(5, 9, 15, 0));
+}
+.more-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 22px; }
+.gallery .feat { grid-column: span 2; grid-row: span 2; }
+.gallery .span2 { grid-column: span 2; }
+@media (hover: hover) { .gallery figure:hover img { transform: scale(1.04); } }
+@media (max-width: 560px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 118px; }
+  .gallery figcaption { padding: 18px 8px 7px; font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .gallery img { transition: none; } }
+
+/* Live and studio */
+.split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+.split > * { min-width: 0; }
+.split p:not(.eyebrow) { margin: 18px 0 0; max-width: 62ch; font-size: 1.05rem; }
+.split .cta { margin-top: 28px; }
+.rows { margin: 28px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.rows li { display: grid; grid-template-columns: 88px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.rows .k { padding-top: 3px; font: 500 11px/1.5 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.feature { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: clamp(22px, 3vw, 32px); }
+.feature .label { font: 500 11px/1.5 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.feature .big {
+  margin: 18px 0 10px; font-family: var(--display); font-weight: 850; font-stretch: 112%;
+  font-size: clamp(2.8rem, 7vw, 4.6rem); line-height: 0.95; letter-spacing: -0.02em;
+}
+.feature .where { font-size: 1.1rem; }
+.feature .by { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); font: 500 12px/1.5 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.specs { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px 6px; }
+.specs dl { margin: 0; }
+.spec { display: grid; grid-template-columns: 104px 1fr; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+.spec dt { padding-top: 2px; font: 500 11px/1.5 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.spec dd { margin: 0; }
+
+/* Apps */
+.apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.app { display: flex; flex-direction: column; min-width: 0; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.app-screen { background: radial-gradient(120% 90% at 85% 0%, #0d1b2c 0%, var(--scr-bg) 62%); border-bottom: 1px solid var(--line); }
+.app-screen svg { display: block; width: 100%; height: auto; }
+.app-body { display: grid; gap: 10px; padding: 20px 22px 24px; }
+.app-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.app-tags span { padding: 4px 8px; border: 1px dashed var(--line); border-radius: 2px; font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.app h3 { margin: 0; font-size: 1.3rem; font-weight: 750; font-stretch: 105%; }
+.app p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+@media (max-width: 860px) { .apps { grid-template-columns: 1fr; } .app { max-width: 560px; } }
+
+/* About */
+.about { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+.about > * { min-width: 0; }
+.about p { margin: 18px 0 0; max-width: 62ch; font-size: 1.05rem; }
+.side { display: grid; gap: 20px; min-width: 0; }
+.portrait {
+  display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 30%;
+  border-radius: 8px; border: 1px solid var(--line); background: var(--meter-off);
+}
+.follow { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 24px; }
+.follow h3 { font-size: 1.1rem; font-weight: 750; margin-bottom: 8px; }
+.follow p { margin: 0 0 18px; color: var(--muted); font-size: 0.97rem; }
+.handle { font-family: var(--mono); font-size: 0.95rem; }
+
+/* Contact */
+.contact-card {
+  padding: clamp(28px, 5vw, 56px); border-radius: 10px; color: #fff;
+  background: linear-gradient(90deg, rgba(5, 9, 15, 0.94) 0%, rgba(5, 9, 15, 0.78) 52%, rgba(5, 9, 15, 0.38) 100%), url("gallery/g24.jpg") center / cover no-repeat, #05090f;
+}
+.contact .contact-card .eyebrow { color: rgba(255, 255, 255, 0.72); }
+.contact .contact-card h2 { color: #fff; }
+.contact .contact-card p:not(.eyebrow) { color: rgba(255, 255, 255, 0.82); }
+.contact .contact-card .mail { color: #fff; }
+.contact .contact-card .btn:not(.btn-primary) { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
+.contact .contact-card .btn:not(.btn-primary):hover { border-color: #fff; }
+.contact .contact-card .status { color: rgba(255, 255, 255, 0.72); }
+.contact h2 { margin-bottom: 18px; }
+.contact p { margin: 0 0 24px; max-width: 56ch; color: var(--muted); font-size: 1.05rem; }
+.mail {
+  display: block; margin: 0 0 24px; font-family: var(--mono); font-weight: 500;
+  font-size: clamp(1rem, 4.4vw, 1.7rem); overflow-wrap: anywhere; user-select: all;
+}
+.status { margin-left: 4px; font-family: var(--mono); font-size: 12px; color: var(--muted); align-self: center; }
+
+/* Footer */
+.foot {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  padding-block: 24px 40px; border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 12px; color: var(--muted);
+}
+
+@media (min-width: 520px) { .strips { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .strips { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 860px) {
+  .hero, .about, .split { grid-template-columns: 1fr; }
+  .scope { max-width: 560px; }
+  .side { max-width: 460px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="inner">
+  <header class="top">
+    <a class="brand" href="#top">Jeremy Miller Audio</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#services">Services</a>
+      <a href="#live">Live</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#studio">Studio</a>
+      <a href="#apps">Apps</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Audio designer &amp; A1 mix engineer</p>
+        <h1>Concierge of Sound</h1>
+        <p class="lede">Live mixing, studio mixing, remote recording, mastering, system design and tuning, corporate A1 and broadcast. One engineer who makes the audio work so the room can focus on the moment.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#contact">Book Jeremy</a>
+          <a class="btn" href="https://www.instagram.com/jeremymilleraudio/">Instagram</a>
+        </div>
+      </div>
+
+      <div class="scope" aria-hidden="true">
+        <div class="scope-head">
+          <div class="scope-title"><b>RTA</b><span>Real-time analyzer</span></div>
+          <div class="chips"><span>Peak hold</span><span>Fast</span></div>
+        </div>
+        <div class="scope-main">
+          <canvas id="rta"></canvas>
+          <canvas id="lr"></canvas>
+        </div>
+        <div class="scope-foot">
+          <canvas id="field"></canvas>
+          <div class="reads">
+            <div class="read big"><span class="lbl">Loudness</span><b><span id="r-lufs">&minus;14.2</span><small>LUFS</small></b></div>
+            <div class="read"><span class="lbl">Peak</span><b id="r-peak">&minus;2.3 dB</b></div>
+            <div class="read"><span class="lbl">RMS</span><b id="r-rms">&minus;18.7 dB</b></div>
+            <div class="read corr"><span class="lbl">Correlation</span><b id="r-corr">0.96</b><div class="corr-bar"><i id="r-cm"></i></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <figure class="shot">
+      <img src="at-the-console.jpg" width="2000" height="1333" alt="Black and white photo of an audio engineer mixing at a Yamaha digital console, with framed photographs on the wall behind him">
+    </figure>
+
+    <section class="sec" id="services">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2>Every channel of the job, covered</h2>
+        <p>From the first mic check to the final master, on a stage, in a studio, in a ballroom or over a remote link.</p>
+      </div>
+      <div class="strips">
+        <article class="strip" style="--f:72%">
+          <div class="strip-top"><span class="tag">CH 1</span><span class="fader" aria-hidden="true"></span></div>
+          <h3>Live Mixing</h3>
+          <p>Front-of-house and monitor mixes for bands, stages and productions, shaped to the room and the crowd in it.</p>
+        </article>
+        <article class="strip" style="--f:58%">
+          <div class="strip-top"><span class="tag">CH 2</span><span class="fader" aria-hidden="true"></span></div>
+          <h3>Studio Mixing</h3>
+          <p>Balanced, translatable mixes built from your recorded tracks and ready for any playback system.</p>
+        </article>
+        <article class="strip" style="--f:66%">
+          <div class="strip-top"><span class="tag">CH 3</span><span class="fader" aria-hidden="true"></span></div>
+          <h3>Remote Recording</h3>
+          <p>Capture performances from wherever you are, with Jeremy guiding the session and running the recording remotely.</p>
+        </article>
+        <article class="strip" style="--f:80%">
+          <div class="strip-top"><span class="tag">CH 4</span><span class="fader" aria-hidden="true"></span></div>
+          <h3>Mastering</h3>
+          <p>The final polish for release: level, tone and consistency across a single track or a full project.</p>
+        </article>
+        <article class="strip" style="--f:50%">
+          <div class="strip-top"><span class="tag">CH 5</span><span class="fader" aria-hidden="true"></span></div>
+          <h3>Live Audio Design</h3>
+          <p>System and signal-flow design for events, venues and productions, planned well before load-in.</p>
+        </article>
+        <article class="strip" style="--f:62%">
+          <div class="strip-top"><span class="tag">CH 6</span><span class="fader" aria-hidden="true"></span></div>
+          <h3>Sound System Tuning</h3>
+          <p>Measuring and aligning PA systems so every seat gets clear, even coverage.</p>
+        </article>
+        <article class="strip" style="--f:76%">
+          <div class="strip-top"><span class="tag">CH 7</span><span class="fader" aria-hidden="true"></span></div>
+          <h3>Corporate A1 Mixing</h3>
+          <p>Lead audio for conferences, keynotes and meetings: clear speech, dependable playback and no surprises.</p>
+        </article>
+        <article class="strip" style="--f:54%">
+          <div class="strip-top"><span class="tag">CH 8</span><span class="fader" aria-hidden="true"></span></div>
+          <h3>Broadcast</h3>
+          <p>Audio for broadcast and streamed productions, mixed for clear, consistent program sound.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="sec" id="live">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Live &amp; broadcast</p>
+          <h2>Live shows and broadcast mixes</h2>
+          <p>Jeremy mixes live sound for touring productions and large rooms, and brings the same ears to broadcast, streaming and location recording.</p>
+          <ul class="rows">
+            <li><b class="k">FOH</b><span>Front-of-house mixing for touring and live productions.</span></li>
+            <li><b class="k">Systems</b><span>System design, tuning and troubleshooting. The New Constellation partners hold L-Acoustics and DiGiCo certifications.</span></li>
+            <li><b class="k">Location</b><span>Live capture and broadcast mixes, recorded and mixed on site.</span></li>
+            <li><b class="k">Stream</b><span>Live-stream audio, from capture to final mix.</span></li>
+          </ul>
+          <p>New Constellation's client list includes Kiefer Sutherland, Dr. John, Dave Matthews, Dead and Company, Lifehouse, 1349, Celtic Frost and Triptykon.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="https://www.newconstellationrmp.com/clients/project-four-yjynj-7lpl9">See live and broadcast videos</a>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="label">Live broadcast mix</div>
+          <div class="big">Goose</div>
+          <div class="where">Madison Square Garden, New York City</div>
+          <div class="by">Mixed by Jeremy Miller</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="gallery">
+      <div class="section-head">
+        <p class="eyebrow">Gallery</p>
+        <h2>From behind the console</h2>
+        <p>Front-of-house positions, measurement rigs and broadcast set-ups from the road.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter photos">
+        <button type="button" data-f="all" aria-pressed="true">All<span class="n">50</span></button>
+        <button type="button" data-f="live" aria-pressed="false">Live<span class="n">40</span></button>
+        <button type="button" data-f="corp" aria-pressed="false">Corporate<span class="n">4</span></button>
+        <button type="button" data-f="bcast" aria-pressed="false">Broadcast<span class="n">6</span></button>
+      </div>
+      <div class="gallery" id="gallery-grid">
+        <figure class="feat" data-cat="live"><img src="gallery/g05.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Jeremy Miller at his front-of-house position in an arena, with two measurement screens and the stage behind him"><figcaption>At front of house, arena show</figcaption></figure>
+        <figure class="span2" data-cat="live"><img src="gallery/g06.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Arena stage with light beams seen from behind the mix position and its screens"><figcaption>Arena show from the mix position</figcaption></figure>
+        <figure class="span2" data-cat="live"><img src="gallery/g50.jpg" width="1800" height="1012" loading="lazy" decoding="async" alt="Arena crowd facing a stage with the F.O.R.C.E. Tour sign, a throne set on the video wall and light beams"><figcaption>The F.O.R.C.E. Tour, arena</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g02.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Mixing console in front of a large colorful LED video wall"><figcaption>FOH position at a video wall show</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g20.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Singer in a blue jacket on a theater stage with red curtains and a video screen on each side"><figcaption>Theater show, screens either side</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g04.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Close-up of a Smaart screen showing spectrum and transfer function traces"><figcaption>SMAART measurement session</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g30.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Digital console facing a stage filled with hanging mirror balls and purple light"><figcaption>Mirror-ball set from the console</figcaption></figure>
+        <figure data-cat="corp"><img src="gallery/g11.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Large ballroom set for a general session, with a console and two laptops at the mix position"><figcaption>General session, ballroom setup</figcaption></figure>
+        <figure data-cat="bcast"><img src="gallery/g15.jpg" width="480" height="360" loading="lazy" decoding="async" alt="Laptop showing an audio analyzer beside a video monitor with a castle behind them"><figcaption>Broadcast mix with analyzer and monitor</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g24.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Purple light beams over an arena crowd, with measurement screens in the foreground"><figcaption>Arena crowd and measurement screens</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g40.jpg" width="552" height="310" loading="lazy" decoding="async" alt="DiGiCo console in the foreground facing a crowd under green laser beams"><figcaption>Console and laser show</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g21.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Outdoor amphitheater stage with hung speaker arrays and green and red moving lights"><figcaption>Amphitheater show, line arrays and movers</figcaption></figure>
+        <figure data-cat="corp"><img src="gallery/g31.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Large hotel ballroom with rows of empty chairs and a curved stage with video screens"><figcaption>General session stage, empty house</figcaption></figure>
+        <figure data-cat="bcast"><img src="gallery/g17.jpg" width="480" height="360" loading="lazy" decoding="async" alt="Laptop and video monitor on a balcony overlooking a lit castle at night"><figcaption>Night broadcast position, castle backdrop</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g43.jpg" width="1182" height="666" loading="lazy" decoding="async" alt="Band on a stage with green lighting, a video wall and a lit truss, seen over the crowd"><figcaption>Arena show, green lighting and video wall</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g08.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Wide stage with a red throne set on the video wall, seen from the audience"><figcaption>Stage and video from FOH</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g01.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Digital mixing console and a laptop in front of pink stage lighting"><figcaption>Digital console, laptop and LED wall</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g03.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Wide view of a mixing console with a curved colorful video wall behind it"><figcaption>FOH position, wide view</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g07.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Stage with a large lit video wall, and a spectrum analyzer on the screen at the mix position"><figcaption>Measurement and console screens at FOH</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g09.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Console and screens at the mix position facing a lit arena stage"><figcaption>Arena front of house</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g10.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Band on an outdoor festival stage with a large video screen and lighting trusses"><figcaption>Outdoor festival stage</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g23.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Engineer at a digital console facing an outdoor stage with video screens and a crowd"><figcaption>Outdoor show from the mix position</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g26.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Console and a measurement screen at the mix position facing a waterfront stage"><figcaption>Waterfront show, console and analyzer</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g27.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Engineer in a cap at the console with an analyzer screen, facing a waterfront stage and crowd"><figcaption>Waterfront show, mix position</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g34.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Arena stage and video screens seen from behind a console and monitor screens"><figcaption>Arena show over the console</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g33.jpg" width="310" height="552" loading="lazy" decoding="async" alt="Portrait view of an arena stage with video screens and lighting rigs above the band"><figcaption>Arena stage and video screens, portrait</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g28.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Upright bass, piano and guitar trio on a stage under blue light beams"><figcaption>Trio on a theater stage</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g12.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Theater stage with performers and a camera operator, seen from behind the console"><figcaption>Theater stage from the console</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g13.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Console and a laptop running a recording session, facing a theater stage"><figcaption>Theater FOH with recording laptop</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g35.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Console touchscreens and a laptop recording session facing a band and a video screen"><figcaption>Band show, console and recording laptop</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g36.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Band on a theater stage with a recording laptop and a mixer screen in the foreground"><figcaption>Band on a theater stage</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g37.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Side-stage view of a band under pink and purple lights with a recording laptop"><figcaption>Side-stage view, recording laptop</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g38.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Band on stage with a starburst light effect, seen from behind the monitor position"><figcaption>Side-stage view, light burst</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g39.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Band on a stage with purple lights and a laptop recording rig at the front"><figcaption>Side-stage view, band and recording rig</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g29.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Digital console and a recording screen facing a dark stage with a glowing green moon"><figcaption>Console and DAW screen, large stage</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g25.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Outdoor night concert with smoke on stage, a console and an analyzer screen in the foreground"><figcaption>Night concert, console and analyzer</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g41.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Console and monitor screens at the mix position facing a crowd in an arena washed in pink light"><figcaption>Pink-lit arena from the console</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g42.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Arena crowd facing a lit stage with video screens, with an analyzer and recording screens at the mix position"><figcaption>Arena show, crowd and measurement screens</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g44.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Mixing console on a platform in front of a curved, colorful video wall, shot wide-angle"><figcaption>FOH position, wide-angle view</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g45.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Mixing console on a riser with a video wall showing neon palm trees and a sunset grid"><figcaption>Console in front of a neon palm-tree wall</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g46.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Equipment racks and keyboards at the side of a stage with a curved neon palm-tree video wall"><figcaption>Side-stage racks, curved video wall</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g47.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Arena before the show with the F.O.R.C.E. Tour video screen, a console and measurement screens in the foreground"><figcaption>The F.O.R.C.E. Tour, FOH before the show</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g48.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Spectrum analyzer display in the foreground with an arena crowd and a blue video wall behind"><figcaption>Spectrum analyzer at FOH</figcaption></figure>
+        <figure data-cat="live"><img src="gallery/g49.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Console and two analyzer screens at front of house facing an arena stage with a large 50 on the video wall"><figcaption>The F.O.R.C.E. Tour, front of house</figcaption></figure>
+        <figure data-cat="corp"><img src="gallery/g14.jpg" width="480" height="360" loading="lazy" decoding="async" alt="Console and laptops at the audio position in a conference ballroom full of seated attendees"><figcaption>Corporate A1 position, breakout meeting</figcaption></figure>
+        <figure data-cat="corp"><img src="gallery/g32.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Digital console in the foreground facing a ballroom with a stage and video screens"><figcaption>Digital console facing the general session</figcaption></figure>
+        <figure data-cat="bcast"><img src="gallery/g16.jpg" width="480" height="360" loading="lazy" decoding="async" alt="Close view of an audio analyzer and a video monitor showing a group of performers"><figcaption>Analyzer and video monitor, location shoot</figcaption></figure>
+        <figure data-cat="bcast"><img src="gallery/g18.jpg" width="480" height="360" loading="lazy" decoding="async" alt="Digital console, laptop and video monitor with a castle and fireworks in the background"><figcaption>Console and monitor, broadcast shoot</figcaption></figure>
+        <figure data-cat="bcast"><img src="gallery/g19.jpg" width="480" height="360" loading="lazy" decoding="async" alt="Console, laptop and video monitor on a balcony with a castle in daylight"><figcaption>Broadcast position, daytime</figcaption></figure>
+        <figure data-cat="bcast"><img src="gallery/g22.jpg" width="552" height="310" loading="lazy" decoding="async" alt="Mix room with a large console, a video monitor, meters and a computer screen"><figcaption>Mix room with video monitor and meters</figcaption></figure>
+      </div>
+      <div class="more-row"><button type="button" class="btn" id="gallery-more" hidden>Show all photos</button>
+        <a class="btn" href="https://www.instagram.com/jeremymilleraudio/">More on Instagram</a>
+      </div>
+    </section>
+
+    <section class="sec" id="studio">
+      <div class="split">
+        <div>
+          <p class="eyebrow">The studio</p>
+          <h2>New Constellation</h2>
+          <p>Jeremy co-owns New Constellation with producer Jarrett Pritchard. The partners founded it in 2012 as a remote company and opened a full studio around 2014. They plan, produce, engineer and master albums, broadcast shoots and other projects, and design sound for film, television and web content.</p>
+          <p>Every project is built from scratch instead of from mixing templates. Digital and analog tools work side by side, from drum tuning and instrument choice through tone design to the final mix.</p>
+          <p>The partners hold certifications from Avid, DiGiCo, L-Acoustics and Dolby Atmos.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="https://www.newconstellationrmp.com/">Visit New Constellation</a>
+            <a class="btn" href="https://www.newconstellationrmp.com/equipment">Equipment list</a>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="bridge-head"><span>Signal chain</span><span>New Constellation</span></div>
+          <dl>
+            <div class="spec"><dt>Console</dt><dd>Restored 1983 Trident 80B, 32x24</dd></div>
+            <div class="spec"><dt>Tape</dt><dd>Studer A820 24-track</dd></div>
+            <div class="spec"><dt>Recording</dt><dd>Three Pro Tools HDX systems</dd></div>
+            <div class="spec"><dt>Converters</dt><dd>Antelope, Metric Halo, Crane Song</dd></div>
+            <div class="spec"><dt>Monitoring</dt><dd>Genelec, Yamaha NS10, JBL, NHT</dd></div>
+            <div class="spec"><dt>Formats</dt><dd>Stereo, surround and Dolby Atmos</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="apps">
+      <div class="section-head">
+        <p class="eyebrow">Software</p>
+        <h2>Audio applications</h2>
+        <p>Tools built to solve problems on live shows and in the studio.</p>
+      </div>
+      <div class="apps">
+        <article class="app">
+          <div class="app-screen"><svg viewBox="0 0 320 180" role="img" aria-label="Illustration of four stacked rack-mounted effects units" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="14" width="300" height="32" rx="3" style="fill:rgba(120,190,255,0.06);stroke:var(--scr-cyan);stroke-opacity:0.75;stroke-width:1"/><circle cx="18" cy="23" r="2" style="fill:var(--scr-dim);opacity:0.55"/><circle cx="18" cy="37" r="2" style="fill:var(--scr-dim);opacity:0.55"/><circle cx="302" cy="23" r="2" style="fill:var(--scr-dim);opacity:0.55"/><circle cx="302" cy="37" r="2" style="fill:var(--scr-dim);opacity:0.55"/><rect x="32" y="21" width="100" height="18" rx="2" style="fill:var(--scr-bg);stroke:var(--scr-cyan);stroke-opacity:0.45"/><rect x="40" y="26" width="52" height="3" rx="1" style="fill:var(--scr-cyan);opacity:0.75"/><rect x="40" y="32" width="30" height="3" rx="1" style="fill:var(--scr-cyan);opacity:0.4"/><circle cx="170" cy="30" r="8" style="fill:none;stroke:var(--scr-dim);stroke-width:1.5"/><line x1="170" y1="30" x2="164.4" y2="33.2" style="stroke:var(--scr-ink);stroke-width:1.5;stroke-linecap:round"/><circle cx="202" cy="30" r="8" style="fill:none;stroke:var(--scr-dim);stroke-width:1.5"/><line x1="202" y1="30" x2="197.1" y2="25.7" style="stroke:var(--scr-ink);stroke-width:1.5;stroke-linecap:round"/><circle cx="234" cy="30" r="8" style="fill:none;stroke:var(--scr-dim);stroke-width:1.5"/><line x1="234" y1="30" x2="236.4" y2="24.0" style="stroke:var(--scr-ink);stroke-width:1.5;stroke-linecap:round"/><circle cx="268" cy="30" r="2.5" style="fill:#3dff8a;opacity:0.9"/><circle cx="282" cy="30" r="2.5" style="fill:var(--scr-dim);opacity:0.35"/><circle cx="296" cy="30" r="2.5" style="fill:#3dff8a;opacity:0.9"/><rect x="10" y="54" width="300" height="32" rx="3" style="fill:rgba(120,190,255,0.06);stroke:var(--scr-line);stroke-opacity:1;stroke-width:1"/><circle cx="18" cy="63" r="2" style="fill:var(--scr-dim);opacity:0.55"/><circle cx="18" cy="77" r="2" style="fill:var(--scr-dim);opacity:0.55"/><circle cx="302" cy="63" r="2" style="fill:var(--scr-dim);opacity:0.55"/><circle cx="302" cy="77" r="2" style="fill:var(--scr-dim);opacity:0.55"/><rect x="32" y="61" width="100" height="18" rx="2" style="fill:var(--scr-bg);stroke:var(--scr-cyan);stroke-opacity:0.45"/><rect x="40" y="66" width="46" height="3" rx="1" style="fill:var(--scr-cyan);opacity:0.75"/><rect x="40" y="72" width="39" height="3" rx="1" style="fill:var(--scr-cyan);opacity:0.4"/><circle cx="170" cy="70" r="8" style="fill:none;stroke:var(--scr-dim);stroke-width:1.5"/><line x1="170" y1="70" x2="164.0" y2="67.5" style="stroke:var(--scr-ink);stroke-width:1.5;stroke-linecap:round"/><circle cx="202" cy="70" r="8" style="fill:none;stroke:var(--scr-dim);stroke-width:1.5"/><line x1="202" y1="70" x2="202.5" y2="63.5" style="stroke:var(--scr-ink);stroke-width:1.5;stroke-linecap:round"/><circle cx="234" cy="70" r="8" style="fill:none;stroke:var(--scr-dim);stroke-width:1.5"/><line x1="234" y1="70" x2="240.3" y2="68.3" style="stroke:var(--scr-ink);stroke-width:1.5;stroke-linecap:round"/><circle cx="268" cy="70" r="2.5" style="fill:var(--scr-dim);opacity:0.35"/><circle cx="282" cy="70" r="2.5" style="fill:#3dff8a;opacity:0.9"/><circle cx="296" cy="70" r="2.5" style="fill:#3dff8a;opacity:0.9"/><rect x="10" y="94" width="300" height="32" rx="3" style="fill:rgba(120,190,255,0.06);stroke:var(--scr-line);stroke-opacity:1;stroke-width:1"/><circle cx="18" cy="103" r="2" style="fill:var(--scr-dim);opacity:0.55"/><circle cx="18" cy="117" r="2" style="fill:var(--scr-dim);opacity:0.55"/><circle cx="302" cy="103" r="2" style="fill:var(--scr-dim);opacity:0.55"/><circle cx="302" cy="117" r="2" style="fill:var(--scr-dim);opacity:0.55"/><rect x="32" y="101" width="100" height="18" rx="2" style="fill:var(--scr-bg);stroke:var(--scr-cyan);stroke-opacity:0.45"/><rect x="40" y="106" width="40" height="3" rx="1" style="fill:var(--scr-cyan);opacity:0.75"/><rect x="40" y="112" width="48" height="3" rx="1" style="fill:var(--scr-cyan);opacity:0.4"/><circle cx="170" cy="110" r="8" style="fill:none;stroke:var(--scr-dim);stroke-width:1.5"/><line x1="170" y1="110" x2="168.4" y2="103.7" style="stroke:var(--scr-ink);stroke-width:1.5;stroke-linecap:round"/><circle cx="202" cy="110" r="8" style="fill:none;stroke:var(--scr-dim);stroke-width:1.5"/><line x1="202" y1="110" x2="207.5" y2="106.5" style="stroke:var(--scr-ink);stroke-width:1.5;stroke-linecap:round"/><circle cx="234" cy="110" r="8" style="fill:none;stroke:var(--scr-dim);stroke-width:1.5"/><line x1="234" y1="110" x2="228.0" y2="112.4" style="stroke:var(--scr-ink);stroke-width:1.5;stroke-linecap:round"/><circle cx="268" cy="110" r="2.5" style="fill:#3dff8a;opacity:0.9"/><circle cx="282" cy="110" r="2.5" style="fill:#3dff8a;opacity:0.9"/><circle cx="296" cy="110" r="2.5" style="fill:var(--scr-dim);opacity:0.35"/><rect x="10" y="134" width="300" height="32" rx="3" style="fill:rgba(120,190,255,0.06);stroke:var(--scr-line);stroke-opacity:1;stroke-width:1"/><circle cx="18" cy="143" r="2" style="fill:var(--scr-dim);opacity:0.55"/><circle cx="18" cy="157" r="2" style="fill:var(--scr-dim);opacity:0.55"/><circle cx="302" cy="143" r="2" style="fill:var(--scr-dim);opacity:0.55"/><circle cx="302" cy="157" r="2" style="fill:var(--scr-dim);opacity:0.55"/><rect x="32" y="141" width="100" height="18" rx="2" style="fill:var(--scr-bg);stroke:var(--scr-cyan);stroke-opacity:0.45"/><rect x="40" y="146" width="34" height="3" rx="1" style="fill:var(--scr-cyan);opacity:0.75"/><rect x="40" y="152" width="57" height="3" rx="1" style="fill:var(--scr-cyan);opacity:0.4"/><circle cx="170" cy="150" r="8" style="fill:none;stroke:var(--scr-dim);stroke-width:1.5"/><line x1="170" y1="150" x2="174.1" y2="144.9" style="stroke:var(--scr-ink);stroke-width:1.5;stroke-linecap:round"/><circle cx="202" cy="150" r="8" style="fill:none;stroke:var(--scr-dim);stroke-width:1.5"/><line x1="202" y1="150" x2="208.1" y2="152.2" style="stroke:var(--scr-ink);stroke-width:1.5;stroke-linecap:round"/><circle cx="234" cy="150" r="8" style="fill:none;stroke:var(--scr-dim);stroke-width:1.5"/><line x1="234" y1="150" x2="228.4" y2="146.7" style="stroke:var(--scr-ink);stroke-width:1.5;stroke-linecap:round"/><circle cx="268" cy="150" r="2.5" style="fill:#3dff8a;opacity:0.9"/><circle cx="282" cy="150" r="2.5" style="fill:var(--scr-dim);opacity:0.35"/><circle cx="296" cy="150" r="2.5" style="fill:#3dff8a;opacity:0.9"/></svg></div>
+          <div class="app-body">
+            <div class="app-tags"><span>Mac app</span><span>MIDI</span></div>
+            <h3>Effects Rack Remote</h3>
+            <p>Controls outboard effects over MIDI from a rack-style view. It shows the Lexicon PCM96 front panel and its preset menu, and saves named rack layouts.</p>
+          </div>
+        </article>
+        <article class="app">
+          <div class="app-screen"><svg viewBox="0 0 320 180" role="img" aria-label="Illustration of a numbered audio cue list with waveforms" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="12" width="300" height="26" rx="3" style="fill:rgba(120,190,255,0.05);stroke:var(--scr-line);stroke-opacity:1"/><text x="22" y="29" style="font:500 11px var(--mono);fill:var(--scr-dim)">Q1</text><rect x="56" y="21" width="96" height="8" rx="2" style="fill:var(--scr-ink);opacity:0.5"/><rect x="200" y="23.5" width="2" height="3.0" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="204" y="21.0" width="2" height="8.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="208" y="18.8" width="2" height="12.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="212" y="18.8" width="2" height="12.4" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="216" y="21.5" width="2" height="7.0" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="220" y="21.2" width="2" height="7.6" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="224" y="17.6" width="2" height="14.9" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="228" y="16.6" width="2" height="16.7" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="232" y="19.1" width="2" height="11.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="236" y="23.4" width="2" height="3.2" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="240" y="19.2" width="2" height="11.5" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="244" y="17.6" width="2" height="14.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="248" y="18.9" width="2" height="12.2" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="252" y="22.0" width="2" height="6.0" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="256" y="22.1" width="2" height="5.9" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="260" y="20.7" width="2" height="8.6" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="264" y="19.6" width="2" height="10.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="268" y="20.6" width="2" height="8.9" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="272" y="23.3" width="2" height="3.4" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="276" y="19.5" width="2" height="11.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="280" y="17.1" width="2" height="15.9" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="284" y="17.7" width="2" height="14.5" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="288" y="21.4" width="2" height="7.2" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="292" y="20.8" width="2" height="8.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="296" y="17.5" width="2" height="15.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="300" y="17.2" width="2" height="15.6" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="10" y="44" width="300" height="26" rx="3" style="fill:rgba(56,230,255,0.08);stroke:var(--scr-cyan);stroke-opacity:0.7"/><text x="22" y="61" style="font:500 11px var(--mono);fill:var(--scr-dim)">Q2</text><rect x="56" y="53" width="72" height="8" rx="2" style="fill:var(--scr-ink);opacity:0.5"/><rect x="200" y="49.3" width="2" height="15.3" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="204" y="49.4" width="2" height="15.3" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="208" y="52.5" width="2" height="8.9" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="212" y="53.7" width="2" height="6.6" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="216" y="49.9" width="2" height="14.2" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="220" y="49.0" width="2" height="16.1" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="224" y="51.2" width="2" height="11.6" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="228" y="55.0" width="2" height="3.9" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="232" y="52.7" width="2" height="8.6" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="236" y="51.5" width="2" height="11.0" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="240" y="52.5" width="2" height="9.0" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="244" y="53.9" width="2" height="6.1" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="248" y="54.3" width="2" height="5.5" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="252" y="51.1" width="2" height="11.8" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="256" y="49.6" width="2" height="14.8" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="260" y="51.1" width="2" height="11.9" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="264" y="55.1" width="2" height="3.9" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="268" y="51.4" width="2" height="11.2" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="272" y="48.7" width="2" height="16.6" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="276" y="49.4" width="2" height="15.3" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="280" y="52.9" width="2" height="8.2" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="284" y="53.7" width="2" height="6.5" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="288" y="50.9" width="2" height="12.2" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="292" y="50.7" width="2" height="12.6" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="296" y="52.7" width="2" height="8.6" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="300" y="55.3" width="2" height="3.3" rx="1" style="fill:var(--scr-cyan);opacity:0.85"/><rect x="10" y="76" width="300" height="26" rx="3" style="fill:rgba(120,190,255,0.05);stroke:var(--scr-line);stroke-opacity:1"/><text x="22" y="93" style="font:500 11px var(--mono);fill:var(--scr-dim)">Q3</text><rect x="56" y="85" width="110" height="8" rx="2" style="fill:var(--scr-ink);opacity:0.5"/><rect x="200" y="84.1" width="2" height="9.9" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="204" y="86.5" width="2" height="5.0" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="208" y="83.2" width="2" height="11.6" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="212" y="82.5" width="2" height="13.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="216" y="84.2" width="2" height="9.6" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="220" y="86.9" width="2" height="4.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="224" y="85.7" width="2" height="6.6" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="228" y="83.4" width="2" height="11.2" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="232" y="82.7" width="2" height="12.6" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="236" y="84.6" width="2" height="8.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="240" y="86.4" width="2" height="5.2" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="244" y="82.4" width="2" height="13.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="248" y="80.6" width="2" height="16.9" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="252" y="82.2" width="2" height="13.7" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="256" y="86.4" width="2" height="5.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="260" y="84.1" width="2" height="9.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="264" y="81.6" width="2" height="14.7" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="268" y="82.2" width="2" height="13.6" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="272" y="85.1" width="2" height="7.9" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="276" y="86.7" width="2" height="4.6" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="280" y="84.8" width="2" height="8.4" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="284" y="83.9" width="2" height="10.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="288" y="84.2" width="2" height="9.6" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="292" y="86.7" width="2" height="4.5" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="296" y="84.5" width="2" height="9.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="300" y="81.5" width="2" height="15.0" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="10" y="108" width="300" height="26" rx="3" style="fill:rgba(120,190,255,0.05);stroke:var(--scr-line);stroke-opacity:1"/><text x="22" y="125" style="font:500 11px var(--mono);fill:var(--scr-dim)">Q4</text><rect x="56" y="117" width="84" height="8" rx="2" style="fill:var(--scr-ink);opacity:0.5"/><rect x="200" y="117.0" width="2" height="8.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="204" y="116.1" width="2" height="9.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="208" y="116.0" width="2" height="10.0" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="212" y="118.1" width="2" height="5.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="216" y="117.2" width="2" height="7.6" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="220" y="113.9" width="2" height="14.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="224" y="113.1" width="2" height="15.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="228" y="115.5" width="2" height="11.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="232" y="119.0" width="2" height="4.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="236" y="114.6" width="2" height="12.7" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="240" y="112.8" width="2" height="16.4" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="244" y="114.3" width="2" height="13.4" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="248" y="118.0" width="2" height="6.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="252" y="117.3" width="2" height="7.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="256" y="115.5" width="2" height="11.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="260" y="116.0" width="2" height="10.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="264" y="117.5" width="2" height="6.9" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="268" y="119.1" width="2" height="3.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="272" y="116.0" width="2" height="10.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="276" y="113.9" width="2" height="14.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="280" y="114.5" width="2" height="13.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="284" y="117.9" width="2" height="6.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="288" y="116.5" width="2" height="9.0" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="292" y="113.1" width="2" height="15.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="296" y="112.8" width="2" height="16.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="300" y="115.8" width="2" height="10.5" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="10" y="140" width="300" height="26" rx="3" style="fill:rgba(120,190,255,0.05);stroke:var(--scr-line);stroke-opacity:1"/><text x="22" y="157" style="font:500 11px var(--mono);fill:var(--scr-dim)">Q5</text><rect x="56" y="149" width="60" height="8" rx="2" style="fill:var(--scr-ink);opacity:0.5"/><rect x="200" y="146.1" width="2" height="13.7" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="204" y="149.1" width="2" height="7.9" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="208" y="149.4" width="2" height="7.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="212" y="145.6" width="2" height="14.9" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="216" y="144.6" width="2" height="16.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="220" y="147.0" width="2" height="12.0" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="224" y="151.3" width="2" height="3.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="228" y="147.8" width="2" height="10.4" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="232" y="146.3" width="2" height="13.5" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="236" y="147.5" width="2" height="11.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="240" y="150.1" width="2" height="5.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="244" y="150.4" width="2" height="5.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="248" y="148.0" width="2" height="10.0" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="252" y="146.8" width="2" height="12.5" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="256" y="147.9" width="2" height="10.2" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="260" y="151.5" width="2" height="3.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="264" y="147.3" width="2" height="11.3" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="268" y="144.8" width="2" height="16.5" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="272" y="145.4" width="2" height="15.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="276" y="149.1" width="2" height="7.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="280" y="149.2" width="2" height="7.6" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="284" y="145.9" width="2" height="14.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="288" y="145.7" width="2" height="14.7" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="292" y="148.1" width="2" height="9.8" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="296" y="151.5" width="2" height="3.1" rx="1" style="fill:#3dff8a;opacity:0.85"/><rect x="300" y="149.0" width="2" height="8.0" rx="1" style="fill:#3dff8a;opacity:0.85"/></svg></div>
+          <div class="app-body">
+            <div class="app-tags"><span>QLab 5</span><span>Show prep</span></div>
+            <h3>ShowFlow to QLab</h3>
+            <p>Reads a live-event show flow and builds a QLab 5 show file with numbered audio cues, preloading the audio files from a folder.</p>
+          </div>
+        </article>
+        <article class="app">
+          <div class="app-screen"><svg viewBox="0 0 320 180" role="img" aria-label="Illustration of equal-loudness contour curves across the frequency range" xmlns="http://www.w3.org/2000/svg"><line x1="24" y1="144.4" x2="300" y2="144.4" style="stroke:var(--scr-line);stroke-width:1"/><line x1="24" y1="120.8" x2="300" y2="120.8" style="stroke:var(--scr-line);stroke-width:1"/><line x1="24" y1="97.2" x2="300" y2="97.2" style="stroke:var(--scr-line);stroke-width:1"/><line x1="24" y1="73.6" x2="300" y2="73.6" style="stroke:var(--scr-line);stroke-width:1"/><line x1="24" y1="50.0" x2="300" y2="50.0" style="stroke:var(--scr-line);stroke-width:1"/><line x1="88.3" y1="16" x2="88.3" y2="168" style="stroke:var(--scr-line);stroke-width:1"/><line x1="180.3" y1="16" x2="180.3" y2="168" style="stroke:var(--scr-line);stroke-width:1"/><line x1="272.3" y1="16" x2="272.3" y2="168" style="stroke:var(--scr-line);stroke-width:1"/><polyline points="24.0,75.1 32.9,82.1 42.1,88.7 51.7,95.1 60.6,100.7 69.8,106.1 79.4,111.4 88.3,116.2 97.2,120.6 107.1,125.1 116.0,128.9 124.9,132.4 134.1,135.6 143.7,138.6 152.6,140.8 161.8,142.9 171.4,144.3 180.3,144.4 189.2,142.3 199.1,141.5 208.0,145.3 216.9,148.4 226.1,150.9 235.7,151.6 244.6,150.3 253.8,147.3 263.4,139.8 272.3,131.9 281.2,127.9 291.1,123.6 300.0,114.3" style="fill:none;stroke:var(--scr-cyan);stroke-opacity:0.35;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round"/><text x="184.3" y="140.4" style="font:500 9px var(--mono);fill:var(--scr-dim)">20</text><polyline points="24.0,50.1 32.9,57.2 42.1,63.9 51.7,70.5 60.6,76.2 69.8,81.7 79.4,87.2 88.3,92.0 97.2,96.5 107.1,101.1 116.0,105.0 124.9,108.5 134.1,111.8 143.7,114.9 152.6,117.1 161.8,119.3 171.4,120.7 180.3,120.8 189.2,118.7 199.1,117.8 208.0,121.7 216.9,124.9 226.1,127.4 235.7,128.1 244.6,126.8 253.8,123.8 263.4,116.1 272.3,108.1 281.2,103.9 291.1,99.6 300.0,90.1" style="fill:none;stroke:var(--scr-cyan);stroke-opacity:0.55;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round"/><text x="184.3" y="116.8" style="font:500 9px var(--mono);fill:var(--scr-dim)">40</text><polyline points="24.0,38.5 32.9,44.4 42.1,50.0 51.7,55.5 60.6,60.2 69.8,64.8 79.4,69.3 88.3,73.3 97.2,77.0 107.1,80.8 116.0,84.1 124.9,87.0 134.1,89.8 143.7,92.3 152.6,94.2 161.8,95.9 171.4,97.1 180.3,97.2 189.2,95.4 199.1,94.8 208.0,98.0 216.9,100.6 226.1,102.7 235.7,103.3 244.6,102.2 253.8,99.6 263.4,93.3 272.3,86.6 281.2,83.2 291.1,79.6 300.0,71.7" style="fill:none;stroke:var(--scr-cyan);stroke-opacity:0.75;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round"/><text x="184.3" y="93.2" style="font:500 9px var(--mono);fill:var(--scr-dim)">60</text><polyline points="24.0,29.1 32.9,33.5 42.1,37.8 51.7,41.9 60.6,45.5 69.8,49.0 79.4,52.4 88.3,55.5 97.2,58.3 107.1,61.2 116.0,63.6 124.9,65.9 134.1,68.0 143.7,69.9 152.6,71.3 161.8,72.6 171.4,73.5 180.3,73.6 189.2,72.3 199.1,71.7 208.0,74.2 216.9,76.2 226.1,77.8 235.7,78.2 244.6,77.4 253.8,75.5 263.4,70.6 272.3,65.6 281.2,63.0 291.1,60.2 300.0,54.3" style="fill:none;stroke:#7dff9a;stroke-opacity:1.0;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round"/><text x="184.3" y="69.6" style="font:500 9px var(--mono);fill:var(--scr-dim)">80</text><text x="24.0" y="177" text-anchor="middle" style="font:500 9px var(--mono);fill:var(--scr-dim)">20</text><text x="88.3" y="177" text-anchor="middle" style="font:500 9px var(--mono);fill:var(--scr-dim)">100</text><text x="180.3" y="177" text-anchor="middle" style="font:500 9px var(--mono);fill:var(--scr-dim)">1k</text><text x="272.3" y="177" text-anchor="middle" style="font:500 9px var(--mono);fill:var(--scr-dim)">10k</text></svg></div>
+          <div class="app-body">
+            <div class="app-tags"><span>Mac app</span><span>Measurement</span></div>
+            <h3>Equal-Loudness RTA</h3>
+            <p>A real-time analyzer that measures spectrum and SPL and weighs the result against equal-loudness curves, to show how a mix translates to the listener.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="sec" id="about">
+      <div class="about">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2>Jeremy Miller</h2>
+          <p>Jeremy is an audio designer and A1 mix engineer. His work spans corporate events, live stages, studio sessions, remote recording and broadcast.</p>
+          <p>The thread through all of it is the concierge approach: understand what the room, the artist or the client needs, then take care of the sound so they can focus on the moment.</p>
+          <p>He co-owns the <a href="https://www.newconstellationrmp.com/">New Constellation</a> recording studio with producer Jarrett Pritchard. Between them they bring nearly 30 years of experience across genres and formats.</p>
+        </div>
+        <div class="side">
+          <img class="portrait" src="jeremy-miller.jpg" width="1024" height="1024" alt="Headshot of Jeremy Miller in a navy suit and gray tie, with a city skyline behind him">
+          <aside class="follow">
+            <h3>Follow the work</h3>
+            <p>New posts and the Audio bits highlight live on Instagram.</p>
+            <a class="btn" href="https://www.instagram.com/jeremymilleraudio/"><span class="handle">@jeremymilleraudio</span></a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec contact" id="contact">
+      <div class="contact-card">
+      <p class="eyebrow">Contact</p>
+      <h2>Tell me what you need to sound like</h2>
+      <p>Send the date, the venue or format, and what you need covered. Jeremy will reply with next steps.</p>
+      <code class="mail" id="mail">ConciergeOfSound@icloud.com</code>
+      <div class="cta">
+        <a class="btn btn-primary" href="mailto:ConciergeOfSound@icloud.com">Email Jeremy</a>
+        <button class="btn" id="copy" type="button">Copy address</button>
+        <span class="status" id="copy-status" role="status"></span>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>&copy; 2026 Jeremy Miller Audio</span>
+    <span><a href="https://www.newconstellationrmp.com/">New Constellation</a> &middot; <a href="https://www.instagram.com/jeremymilleraudio/">Instagram</a></span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var rtaCv = document.getElementById('rta'), lrCv = document.getElementById('lr'), fdCv = document.getElementById('field');
+  if (rtaCv && lrCv && fdCv && rtaCv.getContext) {
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var rs = getComputedStyle(document.documentElement);
+    var tok = function (n, fb) { return (rs.getPropertyValue(n) || '').trim() || fb; };
+    var C = { line: tok('--scr-line', 'rgba(120,190,255,0.16)'), dim: tok('--scr-dim', '#7f93a8'), ink: tok('--scr-ink', '#e4f7ff'), rgb: tok('--scr-bg-rgb', '5, 9, 15') };
+    var FONT = '10px "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace';
+    var N = 48, NSEG = 30, n0;
+    var lv = [], pk = [], hold = [];
+    for (n0 = 0; n0 < N; n0++) { lv.push(-40); pk.push(-40); hold.push(0); }
+    var M = { l: -40, r: -40, lp: -40, rp: -40, lh: 0, rh: 0 };
+    var env = 0, spread = 0.5;
+    var rta, lr, fd;
+
+    var fit = function (cv) {
+      var r = cv.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
+      var w = Math.max(1, r.width), h = Math.max(1, r.height), x = cv.getContext('2d');
+      cv.width = Math.round(w * d); cv.height = Math.round(h * d);
+      x.setTransform(d, 0, 0, d, 0, 0);
+      return { ctx: x, w: w, h: h };
+    };
+    var KX = [0, 0.15, 0.3, 0.4, 0.55, 0.7, 0.85, 1], KY = [-33, -22, -9, -18, -30, -38, -47, -58];
+    var baseDb = function (x) {
+      for (var j = 0; j < KX.length - 1; j++) {
+        if (x <= KX[j + 1]) {
+          var u = (x - KX[j]) / (KX[j + 1] - KX[j]);
+          u = (1 - Math.cos(u * Math.PI)) / 2;
+          return KY[j] + (KY[j + 1] - KY[j]) * u;
+        }
+      }
+      return KY[KY.length - 1];
+    };
+    var follow = function (cur, target, up, down) { return cur + (target - cur) * (target > cur ? up : down); };
+
+    var step = function (t) {
+      env = Math.pow(Math.max(0, Math.sin(t * 0.0042)), 6);
+      spread = 0.5 + 0.5 * Math.sin(t * 0.0003 + 1);
+      for (var k = 0; k < N; k++) {
+        var x = k / (N - 1);
+        var tg = baseDb(x) + 4 * Math.sin(t * 0.0016 * (1 + x) + k * 0.55) + 3 * Math.sin(t * 0.0031 + k * 1.3) + env * 9 * Math.exp(-x * 3.2) + (Math.random() - 0.5) * 2.4;
+        tg = Math.max(-60, Math.min(0, tg));
+        lv[k] = follow(lv[k], tg, 0.5, 0.14);
+        if (lv[k] >= pk[k]) { pk[k] = lv[k]; hold[k] = 28; }
+        else if (hold[k] > 0) { hold[k]--; }
+        else { pk[k] = Math.max(lv[k], pk[k] - 0.9); }
+      }
+      var lt = -17 + env * 8 + 3 * Math.sin(t * 0.0013) + 2 * Math.sin(t * 0.0041 + 1);
+      var rt = -17.5 + env * 8 + 3 * Math.sin(t * 0.0015 + 0.6) + 2 * Math.sin(t * 0.0037 + 2);
+      M.l = follow(M.l, lt, 0.5, 0.1); M.r = follow(M.r, rt, 0.5, 0.1);
+      if (M.l >= M.lp) { M.lp = M.l; M.lh = 30; } else if (M.lh > 0) { M.lh--; } else { M.lp = Math.max(M.l, M.lp - 0.7); }
+      if (M.r >= M.rp) { M.rp = M.r; M.rh = 30; } else if (M.rh > 0) { M.rh--; } else { M.rp = Math.max(M.r, M.rp - 0.7); }
+    };
+
+    var drawRta = function () {
+      var c = rta.ctx, w = rta.w, h = rta.h, padL = 30, padR = 2, padT = 6, padB = 18;
+      var pw = w - padL - padR, ph = h - padT - padB, d, k, x, y;
+      c.clearRect(0, 0, w, h);
+      c.font = FONT; c.lineWidth = 1; c.textBaseline = 'middle'; c.textAlign = 'right';
+      for (d = 0; d <= 60; d += 12) {
+        y = Math.round(padT + ph * d / 60) + 0.5;
+        c.strokeStyle = C.line; c.beginPath(); c.moveTo(padL, y); c.lineTo(padL + pw, y); c.stroke();
+        c.fillStyle = C.dim; c.fillText(d === 0 ? '0' : '-' + d, padL - 6, y);
+      }
+      var marks = pw > 280 ? [[20, '20'], [50, '50'], [100, '100'], [200, '200'], [500, '500'], [1000, '1k'], [2000, '2k'], [5000, '5k'], [10000, '10k'], [20000, '20k']]
+                           : [[20, '20'], [100, '100'], [1000, '1k'], [20000, '20k']];
+      c.textBaseline = 'top';
+      for (k = 0; k < marks.length; k++) {
+        x = Math.round(padL + pw * Math.log(marks[k][0] / 20) / Math.log(1000)) + 0.5;
+        c.strokeStyle = C.line; c.beginPath(); c.moveTo(x, padT); c.lineTo(x, padT + ph); c.stroke();
+        c.fillStyle = C.dim;
+        c.textAlign = k === 0 ? 'left' : (k === marks.length - 1 ? 'right' : 'center');
+        c.fillText(marks[k][1], k === 0 ? padL - 2 : (k === marks.length - 1 ? w - 1 : x), padT + ph + 6);
+      }
+      var bw = pw / N, gap = bw > 7 ? 1.6 : 1, bx, bh, hue, frac;
+      for (k = 0; k < N; k++) {
+        frac = (lv[k] + 60) / 60; bh = Math.max(1, frac * ph);
+        bx = padL + k * bw + gap / 2;
+        hue = 135 + 140 * Math.pow(k / (N - 1), 0.9);
+        c.shadowColor = 'hsla(' + hue + ',100%,60%,0.7)'; c.shadowBlur = 7;
+        c.fillStyle = 'hsl(' + hue + ',95%,53%)';
+        c.fillRect(bx, padT + ph - bh, bw - gap, bh);
+      }
+      c.shadowBlur = 0; c.fillStyle = 'rgba(235,250,255,0.85)';
+      for (k = 0; k < N; k++) {
+        bx = padL + k * bw + gap / 2;
+        c.fillRect(bx, padT + ph - ((pk[k] + 60) / 60) * ph - 2, bw - gap, 1.5);
+      }
+    };
+
+    var drawLr = function () {
+      var c = lr.ctx, w = lr.w, h = lr.h, padT = 6, padB = 18, ph = h - padT - padB;
+      var cw = (w - 10) / 2, segH = ph / NSEG, cols = [[M.l, M.lp, 0, 'L'], [M.r, M.rp, cw + 10, 'R']], q, s, y, f, hue, lit, ps;
+      c.clearRect(0, 0, w, h);
+      for (q = 0; q < 2; q++) {
+        lit = Math.floor(((cols[q][0] + 60) / 60) * NSEG);
+        for (s = 0; s < NSEG; s++) {
+          y = padT + ph - (s + 1) * segH; f = s / (NSEG - 1);
+          hue = f < 0.5 ? 135 : 135 - ((f - 0.5) / 0.5) * 130;
+          if (s < lit) { c.shadowColor = 'hsla(' + hue + ',100%,55%,0.55)'; c.shadowBlur = 5; c.fillStyle = 'hsl(' + hue + ',100%,52%)'; }
+          else { c.shadowBlur = 0; c.fillStyle = 'rgba(150,200,255,0.07)'; }
+          c.fillRect(cols[q][2], y + 1, cw, Math.max(1, segH - 2));
+        }
+        c.shadowBlur = 0;
+        ps = Math.max(0, Math.min(NSEG - 1, Math.floor(((cols[q][1] + 60) / 60) * NSEG)));
+        c.fillStyle = 'rgba(235,250,255,0.92)';
+        c.fillRect(cols[q][2], padT + ph - (ps + 1) * segH + 1, cw, 2);
+        c.font = FONT; c.fillStyle = C.dim; c.textAlign = 'center'; c.textBaseline = 'middle';
+        c.fillText(cols[q][3], cols[q][2] + cw / 2, h - 8);
+      }
+    };
+
+    var gauss = function () { var u = 1 - Math.random(), v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(6.2831853 * v); };
+    var drawField = function (trail) {
+      var c = fd.ctx, s = fd.w, mid = s / 2, R = s * 0.40, p, m, sd, f;
+      c.globalCompositeOperation = 'destination-out';
+      c.fillStyle = 'rgba(0,0,0,' + trail + ')';
+      c.fillRect(0, 0, s, fd.h);
+      var sm = R * (0.34 + 0.34 * env), ss = R * (0.06 + 0.10 * spread);
+      c.globalCompositeOperation = 'lighter';
+      for (p = 0; p < 560; p++) {
+        m = gauss() * sm; sd = gauss() * ss * (1.2 - Math.abs(m) / R * 0.6);
+        if (m * m + sd * sd > R * R) continue;
+        f = (m / R + 1) / 2;
+        c.fillStyle = 'hsla(' + (180 - 120 * f) + ',100%,58%,0.55)';
+        c.fillRect(mid + sd - 0.7, mid - m - 0.7, 1.5, 1.5);
+      }
+      c.globalCompositeOperation = 'source-over';
+      c.lineWidth = 1;
+      c.strokeStyle = 'rgba(70,170,255,0.55)'; c.beginPath(); c.arc(mid, mid, R, 0, 6.2832); c.stroke();
+      c.strokeStyle = 'rgba(70,170,255,0.32)'; c.beginPath(); c.arc(mid, mid, R * 0.66, 0, 6.2832); c.stroke();
+      c.strokeStyle = 'rgba(70,170,255,0.38)'; c.beginPath();
+      c.moveTo(mid - R - 4, mid); c.lineTo(mid + R + 4, mid); c.moveTo(mid, mid - R - 4); c.lineTo(mid, mid + R + 4); c.stroke();
+      c.strokeStyle = 'rgba(70,170,255,0.2)'; c.beginPath();
+      c.moveTo(mid - R * 0.7071, mid - R * 0.7071); c.lineTo(mid + R * 0.7071, mid + R * 0.7071);
+      c.moveTo(mid + R * 0.7071, mid - R * 0.7071); c.lineTo(mid - R * 0.7071, mid + R * 0.7071); c.stroke();
+      c.font = FONT; c.fillStyle = C.dim;
+      c.textBaseline = 'top'; c.textAlign = 'left'; c.fillText('L', 2, 2);
+      c.textAlign = 'right'; c.fillText('R', s - 2, 2);
+      c.textAlign = 'center'; c.textBaseline = 'bottom'; c.fillText('S', mid, fd.h - 1);
+    };
+
+    var gid = function (id) { return document.getElementById(id); };
+    var el = { lufs: gid('r-lufs'), peak: gid('r-peak'), rms: gid('r-rms'), corr: gid('r-corr'), cm: gid('r-cm') };
+    var fmt = function (v, d) { return v.toFixed(d).replace('-', '−'); };
+    var texts = function (t) {
+      var corr = 0.985 - 0.13 * spread;
+      if (el.lufs) el.lufs.textContent = fmt(-14.2 + 0.5 * Math.sin(t * 0.0006), 1);
+      if (el.peak) el.peak.textContent = fmt(-2.3 + 0.8 * Math.sin(t * 0.0011 + 1), 1) + ' dB';
+      if (el.rms) el.rms.textContent = fmt(-18.7 + 0.6 * Math.sin(t * 0.0008), 1) + ' dB';
+      if (el.corr) el.corr.textContent = corr.toFixed(2);
+      if (el.cm) el.cm.style.left = ((corr + 1) / 2 * 100) + '%';
+    };
+    var drawAll = function (trail) { drawRta(); drawLr(); drawField(trail); };
+    var onResize = function () { rta = fit(rtaCv); lr = fit(lrCv); fd = fit(fdCv); if (reduce) drawAll(1); };
+
+    onResize();
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(onResize);
+      ro.observe(rtaCv); ro.observe(lrCv); ro.observe(fdCv);
+    } else { window.addEventListener('resize', onResize); }
+
+    if (reduce) {
+      for (var q0 = 0; q0 < 90; q0++) step(1500 + q0 * 16);
+      texts(1500); drawAll(1);
+    } else {
+      var visible = true, lastTxt = 0;
+      if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(rtaCv);
+      var loop = function (t) {
+        if (visible) { step(t); drawAll(0.28); if (t - lastTxt > 120) { lastTxt = t; texts(t); } }
+        requestAnimationFrame(loop);
+      };
+      requestAnimationFrame(loop);
+    }
+  }
+
+  var fbtns = document.querySelectorAll('.filters button');
+  var figs = Array.prototype.slice.call(document.querySelectorAll('#gallery-grid figure'));
+  var moreBtn = document.getElementById('gallery-more');
+  var LIMIT = 15, filt = 'all', expanded = false;
+  var applyGallery = function () {
+    var shown = 0, total = 0;
+    figs.forEach(function (g) {
+      var match = filt === 'all' || g.getAttribute('data-cat') === filt;
+      if (match) total++;
+      var show = match && (expanded || total <= LIMIT);
+      g.hidden = !show;
+      if (show) shown++;
+    });
+    if (moreBtn) {
+      moreBtn.hidden = expanded || total <= LIMIT;
+      moreBtn.textContent = 'Show all ' + total + ' photos';
+    }
+  };
+  Array.prototype.forEach.call(fbtns, function (b) {
+    b.addEventListener('click', function () {
+      filt = b.getAttribute('data-f'); expanded = false;
+      Array.prototype.forEach.call(fbtns, function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      applyGallery();
+    });
+  });
+  if (moreBtn) moreBtn.addEventListener('click', function () { expanded = true; applyGallery(); });
+  applyGallery();
+
+  var btn = document.getElementById('copy');
+  var status = document.getElementById('copy-status');
+  var mail = document.getElementById('mail');
+  btn.addEventListener('click', function () {
+    var text = mail.textContent.trim();
+    function fallback() {
+      var r = document.createRange();
+      r.selectNodeContents(mail);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(r);
+      status.textContent = 'Address selected. Copy it with your keyboard.';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        status.textContent = 'Copied';
+      }, fallback);
+    } catch (e) {
+      fallback();
+    }
+  });
+})();
+</script>
+</body>
+</html>
