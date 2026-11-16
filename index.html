@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://www.jeremymilleraudio.com/share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="An arena concert seen from the front-of-house mix position">
+<meta property="og:image:alt" content="Jeremy Miller mixing at a digital console">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Jeremy Miller Audio | Live Sound, Broadcast and Studio Mix Engineer">
 <meta name="twitter:description" content="Jeremy Miller is an audio designer and A1 mix engineer for live shows, broadcast, corporate events and the studio: front of house, system design and tuning, recording, mixing and mastering.">
@@ -108,14 +108,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* Hero */
 .hero { position: relative; display: flex; align-items: flex-end; min-height: clamp(600px, 92vh, 900px); overflow: hidden; background: #05070a; }
-.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; }
-.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7, 9, 12, 0.55) 0%, rgba(7, 9, 12, 0.05) 26%, rgba(7, 9, 12, 0.5) 58%, rgba(7, 9, 12, 0.96) 100%), linear-gradient(90deg, rgba(7, 9, 12, 0.55) 0%, rgba(7, 9, 12, 0) 62%); }
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 30%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7, 9, 12, 0.55) 0%, rgba(7, 9, 12, 0.05) 26%, rgba(7, 9, 12, 0.5) 58%, rgba(7, 9, 12, 0.96) 100%), linear-gradient(90deg, rgba(7, 9, 12, 0.72) 0%, rgba(7, 9, 12, 0.1) 60%, rgba(7, 9, 12, 0) 100%); }
 .hero .wrap { position: relative; z-index: 1; width: 100%; padding-top: 120px; padding-bottom: clamp(28px, 4vw, 44px); }
 .hero .eyebrow { color: #dfe5ea; }
-.hero h1 { font-size: clamp(2.9rem, 10.4vw, 8.2rem); font-weight: 850; font-stretch: 116%; line-height: 0.88; letter-spacing: -0.025em; text-transform: uppercase; }
+.hero h1 { font-size: clamp(2.9rem, 7.4vw, 6.2rem); font-weight: 850; font-stretch: 116%; line-height: 0.88; letter-spacing: -0.025em; text-transform: uppercase; }
 .hero h1 span { display: block; }
 .hero h1 .of { color: var(--accent); }
-.lede { max-width: 50ch; margin: 26px 0 30px; font-size: clamp(1.05rem, 1.5vw, 1.22rem); color: #e2e7ec; }
+.lede { max-width: 44ch; margin: 26px 0 30px; font-size: clamp(1.05rem, 1.5vw, 1.22rem); color: #e2e7ec; }
 .hero-meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: clamp(36px, 5vw, 60px) 0 0; padding: 0; list-style: none; border-top: 1px solid rgba(255, 255, 255, 0.22); }
 .hero-meta li { padding: 16px 16px 0 0; }
 .hero-meta b { display: block; font: 750 1.02rem/1.2 var(--display); font-stretch: 108%; }
@@ -187,6 +187,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .feature .by { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); font: 500 12px/1.5 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .ph { margin: 0; overflow: hidden; border-radius: 8px; background: var(--surface); }
+.ph.wide img { aspect-ratio: 16 / 9; }
 .ph img { display: block; width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.6s var(--ease); }
 @media (hover: hover) { .ph:hover img { transform: scale(1.03); } }
 @media (max-width: 900px) { .live-grid { grid-template-columns: 1fr; } }
@@ -207,7 +208,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .more-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 26px; }
 
 /* Studio */
-.studio-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.specs-card { padding: clamp(22px, 3vw, 32px); border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.specs-card .label { font: 500 11px/1.5 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.specs-card .specs { border-bottom: 0; }
+.studio-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
 .studio-photo { margin: 0; overflow: hidden; border-radius: 8px; background: var(--surface); }
 .studio-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 68% 40%; transition: transform 0.6s var(--ease); }
 @media (hover: hover) { .studio-photo:hover img { transform: scale(1.03); } }
@@ -305,7 +309,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 <main id="main">
   <section class="hero">
-    <img class="hero-img" src="hero.jpg" srcset="hero-sm.jpg 1000w, hero.jpg 2000w" sizes="100vw" width="2000" height="1125" fetchpriority="high" alt="An arena concert seen from the front-of-house mix position, with the crowd, stage and video screens under white light beams">
+    <img class="hero-img" src="hero.jpg" srcset="hero-sm.jpg 1000w, hero.jpg 2000w" sizes="100vw" width="2000" height="1333" fetchpriority="high" alt="Black and white photo of Jeremy Miller mixing at a digital console">
     <div class="wrap">
       <p class="eyebrow">Jeremy Miller / Audio designer and A1 mix engineer</p>
       <h1><span>Concierge</span><span><span class="of" style="display:inline">of</span> Sound</span></h1>
@@ -379,7 +383,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
           </ul>
           <div class="credits">
             <span class="lbl">New Constellation's client list includes</span>
-            <p>Kiefer Sutherland<i>/</i>Dr. John<i>/</i>Dave Matthews<i>/</i>Dead and Company<i>/</i>Lifehouse<i>/</i>1349<i>/</i>Celtic Frost<i>/</i>Triptykon</p>
+            <p>Goose<i>/</i>Kiefer Sutherland<i>/</i>Dr. John<i>/</i>Dave Matthews Band<i>/</i>Lifehouse<i>/</i>1349<i>/</i>Celtic Frost<i>/</i>Triptykon</p>
           </div>
           <div class="cta" style="margin-top:30px">
             <a class="btn" href="https://www.newconstellationrmp.com/clients/project-four-yjynj-7lpl9">Watch live and broadcast videos <span class="arr" aria-hidden="true">&rarr;</span></a>
@@ -392,6 +396,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
             <div class="where">Madison Square Garden, New York City</div>
             <div class="by">Mixed by Jeremy Miller</div>
           </div>
+          <figure class="ph wide"><img src="live-arena.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="An arena concert seen from the front-of-house mix position, with the crowd, stage and video screens under white light beams"></figure>
           <div class="pair">
             <figure class="ph"><img src="gallery/g40.jpg" width="552" height="310" loading="lazy" decoding="async" alt="DiGiCo console in the foreground facing a crowd under green laser beams"></figure>
             <figure class="ph"><img src="gallery/g44.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Mixing console on a platform in front of a curved, colorful video wall"></figure>
@@ -493,23 +498,25 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <section class="band" id="studio">
     <div class="wrap">
       <div class="studio-grid">
-        <figure class="studio-photo"><img src="at-the-console.jpg" width="1600" height="1066" loading="lazy" decoding="async" alt="Black and white photo of Jeremy Miller mixing at a digital console"></figure>
         <div class="prose">
           <p class="eyebrow">The studio</p>
           <h2>New Constellation</h2>
           <p>Jeremy co-owns New Constellation with producer Jarrett Pritchard. The partners founded it in 2012 as a remote company and opened a full studio around 2014. They plan, produce, engineer and master albums, broadcast shoots and other projects, and design sound for film, television and web content.</p>
           <p>Every project is built from scratch instead of from mixing templates. Digital and analog tools work side by side, from drum tuning and instrument choice through tone design to the final mix.</p>
-          <dl class="specs">
+          <div class="cta">
+            <a class="btn btn-primary" href="https://www.newconstellationrmp.com/">Visit New Constellation <span class="arr" aria-hidden="true">&rarr;</span></a>
+            <a class="btn" href="https://www.newconstellationrmp.com/equipment">Equipment list</a>
+          </div>
+        </div>
+        <div class="specs-card">
+          <div class="label">Signal chain / New Constellation</div>
+          <dl class="specs" style="margin-top:14px">
             <div class="spec"><dt>Console</dt><dd>Restored 1983 Trident 80B, 32x24</dd></div>
             <div class="spec"><dt>Tape</dt><dd>Studer A820 24-track</dd></div>
             <div class="spec"><dt>Recording</dt><dd>Three Pro Tools HDX systems</dd></div>
             <div class="spec"><dt>Monitoring</dt><dd>Genelec, Yamaha NS10, JBL, NHT</dd></div>
             <div class="spec"><dt>Formats</dt><dd>Stereo, surround and Dolby Atmos</dd></div>
           </dl>
-          <div class="cta">
-            <a class="btn btn-primary" href="https://www.newconstellationrmp.com/">Visit New Constellation <span class="arr" aria-hidden="true">&rarr;</span></a>
-            <a class="btn" href="https://www.newconstellationrmp.com/equipment">Equipment list</a>
-          </div>
         </div>
       </div>
     </div>
@@ -526,7 +533,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         <article class="app app-wide">
           <div class="app-screen"><svg viewBox="0 0 320 180" role="img" aria-label="Illustration of a chat-style transcript feed with one line per audio channel" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="12" width="40" height="24" rx="3" style="fill:rgba(120,190,255,0.07);stroke:var(--scr-line)"/><text x="30" y="27" text-anchor="middle" style="font:500 9px var(--mono);fill:var(--scr-ink)">FOH</text><rect x="58" y="12" width="252" height="24" rx="3" style="fill:rgba(120,190,255,0.05);stroke:var(--scr-line);stroke-opacity:1"/><rect x="68" y="19" width="150" height="4" rx="2" style="fill:var(--scr-ink);opacity:0.6"/><rect x="68" y="26" width="96" height="4" rx="2" style="fill:var(--scr-ink);opacity:0.32"/><rect x="10" y="44" width="40" height="24" rx="3" style="fill:rgba(120,190,255,0.07);stroke:var(--scr-line)"/><text x="30" y="59" text-anchor="middle" style="font:500 9px var(--mono);fill:var(--scr-ink)">SM</text><rect x="58" y="44" width="252" height="24" rx="3" style="fill:rgba(120,190,255,0.05);stroke:var(--scr-line);stroke-opacity:1"/><rect x="68" y="51" width="118" height="4" rx="2" style="fill:var(--scr-ink);opacity:0.6"/><rect x="68" y="58" width="60" height="4" rx="2" style="fill:var(--scr-ink);opacity:0.32"/><rect x="10" y="76" width="40" height="24" rx="3" style="fill:rgba(120,190,255,0.07);stroke:var(--scr-line)"/><text x="30" y="91" text-anchor="middle" style="font:500 9px var(--mono);fill:var(--scr-ink)">MON</text><rect x="58" y="76" width="252" height="24" rx="3" style="fill:rgba(242,165,58,0.12);stroke:#f2a53a;stroke-opacity:0.9"/><rect x="68" y="83" width="164" height="4" rx="2" style="fill:var(--scr-ink);opacity:0.6"/><rect x="68" y="90" width="110" height="4" rx="2" style="fill:var(--scr-ink);opacity:0.32"/><circle cx="296" cy="88" r="4" style="fill:#f2a53a"/><rect x="10" y="108" width="40" height="24" rx="3" style="fill:rgba(120,190,255,0.07);stroke:var(--scr-line)"/><text x="30" y="123" text-anchor="middle" style="font:500 9px var(--mono);fill:var(--scr-ink)">VID</text><rect x="58" y="108" width="252" height="24" rx="3" style="fill:rgba(120,190,255,0.05);stroke:var(--scr-line);stroke-opacity:1"/><rect x="68" y="115" width="96" height="4" rx="2" style="fill:var(--scr-ink);opacity:0.6"/><rect x="10" y="140" width="40" height="24" rx="3" style="fill:rgba(120,190,255,0.07);stroke:var(--scr-line)"/><text x="30" y="155" text-anchor="middle" style="font:500 9px var(--mono);fill:var(--scr-ink)">LX</text><rect x="58" y="140" width="252" height="24" rx="3" style="fill:rgba(120,190,255,0.05);stroke:var(--scr-line);stroke-opacity:1"/><rect x="68" y="147" width="140" height="4" rx="2" style="fill:var(--scr-ink);opacity:0.6"/><rect x="68" y="154" width="74" height="4" rx="2" style="fill:var(--scr-ink);opacity:0.32"/></svg></div>
           <div class="app-body">
-            <h3>FraudCom</h3>
+            <h3>LiveCom</h3>
             <p>Multichannel live transcription for sound and show crews. Each audio channel is transcribed on its own into a chat-style feed, with hot-word alerts and OSC and MIDI triggers. It takes audio from Dante Virtual Soundcard and other interfaces.</p>
             <div class="app-tags"><span>Mac</span><span>Windows</span><span>Live transcription</span></div>
           </div>
