@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Audio Software Demos | Jeremy Miller Audio</title>
+<meta name="description" content="Demo videos of the audio software Jeremy Miller builds: LiveCom live transcription, Dante Visualizer, the Lathe mastering app, the Prism Meter plugin and the Meter Bridge metering app.">
+<link rel="canonical" href="https://www.jeremymilleraudio.com/software/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#07090c">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jeremy Miller Audio">
+<meta property="og:title" content="Audio Software Demos | Jeremy Miller Audio">
+<meta property="og:description" content="Demo videos of the audio software Jeremy Miller builds: LiveCom live transcription, Dante Visualizer, the Lathe mastering app, the Prism Meter plugin and the Meter Bridge metering app.">
+<meta property="og:url" content="https://www.jeremymilleraudio.com/software/">
+<meta property="og:image" content="https://www.jeremymilleraudio.com/software/media/prism-meter.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Audio Software Demos | Jeremy Miller Audio">
+<meta name="twitter:description" content="Demo videos of the audio software Jeremy Miller builds: LiveCom live transcription, Dante Visualizer, the Lathe mastering app, the Prism Meter plugin and the Meter Bridge metering app.">
+<meta name="twitter:image" content="https://www.jeremymilleraudio.com/software/media/prism-meter.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://www.jeremymilleraudio.com/software/", "url": "https://www.jeremymilleraudio.com/software/", "name": "Audio software demos | Jeremy Miller Audio", "description": "Demo videos of the audio software Jeremy Miller builds: LiveCom live transcription, Dante Visualizer, the Lathe mastering app, the Prism Meter plugin and the Meter Bridge metering app.", "isPartOf": {"@id": "https://www.jeremymilleraudio.com/#website"}, "author": {"@id": "https://www.jeremymilleraudio.com/#jeremy"}}, {"@type": "VideoObject", "name": "LiveCom demo", "description": "LiveCom showing a crew's comms transcribed line by line, with hot words highlighted and an automation firing", "thumbnailUrl": "https://www.jeremymilleraudio.com/software/media/livecom.jpg", "contentUrl": "https://www.jeremymilleraudio.com/software/media/livecom.mp4", "uploadDate": "2026-11-25"}, {"@type": "VideoObject", "name": "Dante Visualizer demo", "description": "Animated preview of Dante Visualizer: a signal-flow diagram flags a cable fault, then the monitor view shows clock, switches, dropouts and history", "thumbnailUrl": "https://www.jeremymilleraudio.com/software/media/dante-visualizer.jpg", "contentUrl": "https://www.jeremymilleraudio.com/software/media/dante-visualizer.mp4", "uploadDate": "2026-11-25"}, {"@type": "VideoObject", "name": "Lathe demo", "description": "Lathe with a six-track album assembled on the destination timeline and the playhead moving through it", "thumbnailUrl": "https://www.jeremymilleraudio.com/software/media/lathe.jpg", "contentUrl": "https://www.jeremymilleraudio.com/software/media/lathe.mp4", "uploadDate": "2026-11-25"}, {"@type": "VideoObject", "name": "Prism Meter demo", "description": "Prism Meter's console layout with loudness, spectrum, PPM, K-System, VU and vectorscope meters moving, then the stereo needle and four-view layouts", "thumbnailUrl": "https://www.jeremymilleraudio.com/software/media/prism-meter.jpg", "contentUrl": "https://www.jeremymilleraudio.com/software/media/prism-meter.mp4", "uploadDate": "2026-11-25"}, {"@type": "VideoObject", "name": "Meter Bridge demo", "description": "Meter Bridge overlaying six sources on one spectrum, then its quad meter layout and arched LED meter panel", "thumbnailUrl": "https://www.jeremymilleraudio.com/software/media/meterbridge.jpg", "contentUrl": "https://www.jeremymilleraudio.com/software/media/meterbridge.mp4", "uploadDate": "2026-11-25"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #07090c;
+  --bg-2: #0b0f14;
+  --surface: #10151b;
+  --line: #202833;
+  --ink: #eef1f4;
+  --muted: #9aa5b1;
+  --accent: #f2a53a;
+  --accent-ink: #1a1204;
+  --scr-bg: #05090f;
+  --scr-bg-rgb: 5, 9, 15;
+  --scr-line: rgba(120, 190, 255, 0.16);
+  --scr-dim: #7f93a8;
+  --scr-ink: #e4f7ff;
+  --scr-cyan: #38e6ff;
+  --display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--bg); }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { max-width: 100%; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: 1240px; margin-inline: auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.band { padding-block: clamp(64px, 9vw, 128px); }
+.band.alt { background: var(--bg-2); border-block: 1px solid var(--line); }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 100; padding: 10px 14px; background: var(--accent); color: var(--accent-ink); font-weight: 600; border-radius: 4px; text-decoration: none; }
+.skip:focus { top: calc(12px + env(safe-area-inset-top, 0px)); }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); font-weight: 800; font-stretch: 110%; line-height: 1; letter-spacing: -0.015em; }
+.eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 20px; font: 500 12px/1.4 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--accent); flex: none; }
+.head { max-width: 64ch; margin-bottom: clamp(32px, 5vw, 56px); }
+.head p:not(.eyebrow) { margin: 18px 0 0; color: var(--muted); font-size: 1.08rem; max-width: 56ch; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 12px 22px; border-radius: 4px; border: 1px solid rgba(255, 255, 255, 0.24); background: transparent; color: var(--ink); font: 600 0.95rem/1 var(--body); text-decoration: none; cursor: pointer; transition: transform 0.2s var(--ease), border-color 0.2s, background-color 0.2s; }
+.btn:hover { border-color: var(--ink); transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(0.98); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { border-color: #ffd08a; background: #ffb64f; }
+.btn .arr { transition: transform 0.2s var(--ease); }
+.btn:hover .arr { transform: translateX(3px); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--bg); }
+.top { position: fixed; inset: env(safe-area-inset-top, 0px) 0 auto 0; z-index: 50; transition: background-color 0.3s, border-color 0.3s; border-bottom: 1px solid transparent; }
+.top.solid, .top.open { background: rgba(7, 9, 12, 0.9); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom-color: var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 64px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font: 800 0.92rem/1 var(--display); font-stretch: 118%; letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+.brand svg { width: 22px; height: 22px; flex: none; }
+.nav { display: flex; align-items: center; gap: 4px 22px; font: 500 13px/1 var(--mono); }
+.nav a { position: relative; padding: 10px 0; text-decoration: none; color: #c9d1d9; }
+.nav a:not(.btn)::after { content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.25s var(--ease); }
+.nav a:not(.btn):hover { color: var(--ink); }
+.nav a:not(.btn):hover::after { transform: scaleX(1); }
+.nav .btn { min-height: 38px; padding: 9px 16px; font: 600 13px/1 var(--body); color: var(--accent-ink); }
+.menu { display: none; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; border: 1px solid rgba(255, 255, 255, 0.24); border-radius: 4px; background: transparent; color: var(--ink); font: 500 12px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; }
+@media (max-width: 940px) {
+  .menu { display: inline-flex; }
+  .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 8px max(20px, env(safe-area-inset-right, 0px)) 20px max(20px, env(safe-area-inset-left, 0px)); background: #07090c; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .top.open .nav { display: flex; }
+  .nav a { padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .nav a:not(.btn)::after { display: none; }
+  .nav .btn { margin-top: 16px; min-height: 46px; border-bottom: 0; }
+}
+.app-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 8px; }
+.app-tags span { padding: 4px 8px; border: 1px solid var(--line); border-radius: 2px; font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.apps-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin-top: 28px; padding: 20px 24px; border: 1px solid var(--line); border-radius: 8px; }
+.apps-foot p { margin: 0; color: var(--muted); }
+.apps-foot code { font: 500 1rem var(--mono); color: var(--ink); user-select: all; overflow-wrap: anywhere; }
+.status { font: 500 12px var(--mono); color: #dfe5ea; }
+.foot { border-top: 1px solid var(--line); }
+.foot .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 28px; padding-top: 28px; padding-bottom: 44px; font: 500 12px/1.6 var(--mono); color: var(--muted); }
+.foot nav { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.foot a { padding: 6px 0; text-decoration: none; }
+.foot a:hover { color: var(--ink); }
+/* Demos page */
+.page-intro { padding-top: calc(64px + clamp(56px, 8vw, 110px)); padding-bottom: clamp(24px, 4vw, 48px); }
+.page-intro h1 { font-size: clamp(2.6rem, 6.4vw, 5.2rem); font-weight: 850; font-stretch: 116%; line-height: 0.92; letter-spacing: -0.025em; text-transform: uppercase; }
+.page-intro h1 span { color: var(--accent); }
+.page-intro .lede { max-width: 58ch; margin: 22px 0 0; font-size: clamp(1.02rem, 1.4vw, 1.18rem); color: #d6dde4; }
+.jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 30px 0 0; padding: 0; list-style: none; }
+.jump a { display: inline-block; padding: 9px 14px; border: 1px solid var(--line); border-radius: 4px; font: 500 12px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: #c9d1d9; transition: border-color 0.2s, color 0.2s; }
+.jump a:hover { border-color: var(--accent); color: var(--ink); }
+.demo { scroll-margin-top: 84px; display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+.demo + .demo { margin-top: clamp(64px, 9vw, 120px); padding-top: clamp(64px, 9vw, 120px); border-top: 1px solid var(--line); }
+.demo:nth-of-type(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr); }
+.demo:nth-of-type(even) .player { order: 2; }
+.player { position: relative; margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--scr-bg); box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.9); }
+.player video { display: block; width: 100%; height: auto; background: var(--scr-bg); }
+.player figcaption { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-top: 1px solid var(--line); font: 500 11px/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: var(--bg-2); }
+.player figcaption .live::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: #3dff8a; vertical-align: 1px; }
+.player figcaption .live.preview::before { background: var(--accent); }
+.toggle { position: absolute; right: 12px; top: 12px; min-height: 34px; padding: 7px 12px; border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 4px; background: rgba(7, 9, 12, 0.72); color: var(--ink); font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.toggle:hover { border-color: var(--ink); }
+.demo-text h2 { font-size: clamp(1.9rem, 3.4vw, 2.7rem); }
+.demo-text .kind { margin: 12px 0 0; font: 500 12px/1.5 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.demo-text p { margin: 16px 0 0; color: #cfd6dd; }
+.demo-text ul { margin: 18px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.demo-text li { padding: 10px 0 10px 22px; border-bottom: 1px solid var(--line); position: relative; color: #dfe5ea; font-size: 0.96rem; }
+.demo-text li::before { content: ""; position: absolute; left: 2px; top: 19px; width: 10px; height: 1px; background: var(--accent); }
+.demo-text .app-tags { margin-top: 18px; }
+.note { margin: 14px 0 0; font: 500 12px/1.6 var(--mono); color: var(--muted); }
+.back { margin-top: clamp(56px, 8vw, 96px); }
+@media (max-width: 900px) {
+  .demo, .demo:nth-of-type(even) { grid-template-columns: 1fr; }
+  .demo:nth-of-type(even) .player { order: 0; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .jump a { transition: none; } }
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top solid" id="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Jeremy Miller Audio, home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><g fill="#f2a53a"><rect x="6" y="24" width="7" height="16" rx="3.5"/><rect x="17.5" y="14" width="7" height="36" rx="3.5"/><rect x="29" y="5" width="7" height="54" rx="3.5"/><rect x="40.5" y="16" width="7" height="32" rx="3.5"/><rect x="52" y="25" width="7" height="14" rx="3.5"/></g></svg>
+      Jeremy Miller Audio
+    </a>
+    <button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Sections">
+      <a href="/#services">Services</a>
+      <a href="/#live">Live</a>
+      <a href="/#gallery">Gallery</a>
+      <a href="/#studio">Studio</a>
+      <a href="/#software" aria-current="page">Software</a>
+      <a href="/#about">About</a>
+      <a class="btn btn-primary" href="/#contact">Book Jeremy</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-intro">
+    <div class="wrap">
+      <p class="eyebrow">Software / Demos</p>
+      <h1>See the tools <span>run</span></h1>
+      <p class="lede">Short demos of five applications Jeremy builds for problems he meets on live shows and in the studio. Each clip plays when it scrolls into view; there is no sound.</p>
+      <ul class="jump" aria-label="Jump to an app"><li><a href="#livecom">LiveCom</a></li><li><a href="#dante-visualizer">Dante Visualizer</a></li><li><a href="#lathe">Lathe</a></li><li><a href="#prism-meter">Prism Meter</a></li><li><a href="#meter-bridge">Meter Bridge</a></li></ul>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:clamp(32px,5vw,64px)" aria-label="Demo videos">
+    <div class="wrap">
+    <article class="demo" id="livecom" aria-labelledby="livecom-h">
+      <figure class="player">
+        <video muted loop playsinline preload="none" poster="media/livecom.jpg" width="1600" height="900" aria-label="LiveCom showing a crew's comms transcribed line by line, with hot words highlighted and an automation firing">
+          <source src="media/livecom.mp4" type="video/mp4">
+        </video>
+        <button class="toggle" type="button" aria-label="Play LiveCom demo">Play</button>
+        <figcaption><span class="live">Real app · scripted test feed</span><span>LiveCom</span></figcaption>
+      </figure>
+      <div class="demo-text">
+        <h2 id="livecom-h">LiveCom</h2>
+        <p class="kind">Live transcription for show crews</p>
+        <p>Every channel on a show is transcribed on its own and shown as one chat-style feed, so nobody misses a call on comms. Speech recognition runs on the computer itself, with nothing sent to the internet.</p>
+        <ul><li>Takes channels from Dante Virtual Soundcard, ASIO and other interfaces at once</li><li>Groups and tabs, with an unread badge and alert when a hidden group talks</li><li>Hot words such as standby, cue and go are highlighted and always alert</li><li>OSC and MIDI automations fire from what is said, for example a QLab GO</li></ul>
+        <div class="app-tags"><span>Mac</span><span>Windows</span><span>Live transcription</span></div>
+      </div>
+    </article>
+    <article class="demo" id="dante-visualizer" aria-labelledby="dante-visualizer-h">
+      <figure class="player">
+        <video muted loop playsinline preload="none" poster="media/dante-visualizer.jpg" width="1600" height="900" aria-label="Animated preview of Dante Visualizer: a signal-flow diagram flags a cable fault, then the monitor view shows clock, switches, dropouts and history">
+          <source src="media/dante-visualizer.mp4" type="video/mp4">
+        </video>
+        <button class="toggle" type="button" aria-label="Play Dante Visualizer demo">Play</button>
+        <figcaption><span class="live preview">Animated preview</span><span>Dante Visualizer</span></figcaption>
+      </figure>
+      <div class="demo-text">
+        <h2 id="dante-visualizer-h">Dante Visualizer</h2>
+        <p class="kind">Dante network signal flow and monitoring</p>
+        <p>A whole-network view of a Dante system: every transmitter, switch and receiver in one signal-flow diagram, with live signal moving through it. When something goes wrong it says where, down to the switch port.</p>
+        <ul><li>Signal-flow view of devices, switches and routes</li><li>Clock view: the PTP leader, followers in lock and jitter over time</li><li>Switch health over SNMP for Netgear M4250 and Luminex GigaCore</li><li>“Lost on the way”: compares what each transmitter sends with what each receiver gets</li><li>A searchable history of every problem through the show</li></ul>
+        <div class="app-tags"><span>Mac app</span><span>Dante</span></div>
+          <p class="note">This clip is an animated preview of the interface. A screen recording of the app is on the way.</p>
+      </div>
+    </article>
+    <article class="demo" id="lathe" aria-labelledby="lathe-h">
+      <figure class="player">
+        <video muted loop playsinline preload="none" poster="media/lathe.jpg" width="1600" height="900" aria-label="Lathe with a six-track album assembled on the destination timeline and the playhead moving through it">
+          <source src="media/lathe.mp4" type="video/mp4">
+        </video>
+        <button class="toggle" type="button" aria-label="Play Lathe demo">Play</button>
+        <figcaption><span class="live">Real app · test session</span><span>Lathe</span></figcaption>
+      </figure>
+      <div class="demo-text">
+        <h2 id="lathe-h">Lathe</h2>
+        <p class="kind">CD premastering, editing and DDP</p>
+        <p>A Mac mastering workstation for assembling albums: place the masters, set track marks and pauses, fill in the disc details and deliver a checked DDP image or files.</p>
+        <ul><li>Source and destination timelines for take assembly and editing</li><li>Track and index marks, pauses and CD text, with a track list beside the timeline</li><li>Lanes in mono, stereo or 5.1, with per-clip effects chains</li><li>Loudness metering, a full Meter Bridge window and pre-delivery checks</li><li>Editable key commands and batch rendering</li></ul>
+        <div class="app-tags"><span>Mac app</span><span>Mastering</span><span>DDP</span></div>
+      </div>
+    </article>
+    <article class="demo" id="prism-meter" aria-labelledby="prism-meter-h">
+      <figure class="player">
+        <video muted loop playsinline preload="none" poster="media/prism-meter.jpg" width="1280" height="780" aria-label="Prism Meter's console layout with loudness, spectrum, PPM, K-System, VU and vectorscope meters moving, then the stereo needle and four-view layouts">
+          <source src="media/prism-meter.mp4" type="video/mp4">
+        </video>
+        <button class="toggle" type="button" aria-label="Play Prism Meter demo">Play</button>
+        <figcaption><span class="live">Real plugin · test signal</span><span>Prism Meter</span></figcaption>
+      </figure>
+      <div class="demo-text">
+        <h2 id="prism-meter-h">Prism Meter</h2>
+        <p class="kind">All-in-one metering plugin</p>
+        <p>Every meter a mix or master needs in one plugin window, built from the published standards. Layouts fit the screen it lives on, from a full console view to a single meter on a small display.</p>
+        <ul><li>Loudness to ITU-R BS.1770-5 and EBU R128: momentary, short-term, integrated, LRA, true peak</li><li>VU, PPM (EBU, BBC, DIN, Nordic) and K-System meters</li><li>A dual-needle peak and average gauge with crest factor</li><li>Spectrum with a scrolling spectrogram, and a vectorscope with correlation and width</li><li>Display presets for 12″, 14″, ultrawide and 7″ screens</li></ul>
+        <div class="app-tags"><span>VST3</span><span>AU</span><span>Mac</span></div>
+      </div>
+    </article>
+    <article class="demo" id="meter-bridge" aria-labelledby="meter-bridge-h">
+      <figure class="player">
+        <video muted loop playsinline preload="none" poster="media/meterbridge.jpg" width="1600" height="600" aria-label="Meter Bridge overlaying six sources on one spectrum, then its quad meter layout and arched LED meter panel">
+          <source src="media/meterbridge.mp4" type="video/mp4">
+        </video>
+        <button class="toggle" type="button" aria-label="Play Meter Bridge demo">Play</button>
+        <figcaption><span class="live">Real app · six test sources</span><span>Meter Bridge</span></figcaption>
+      </figure>
+      <div class="demo-text">
+        <h2 id="meter-bridge-h">Meter Bridge</h2>
+        <p class="kind">Standalone multi-source metering</p>
+        <p>A standalone Mac app that meters live inputs from Dante Virtual Soundcard, Pro Tools outputs or any Core Audio device. Up to six sources share one spectrum, so you can see which keyboard is playing which frequencies.</p>
+        <ul><li>Spectrum overlay: six coloured traces over a 3D history of their sum</li><li>Quad and row layouts that put four Prism meters on one display</li><li>An arched LED meter panel with loudness, for an 8″ bar screen</li><li>One window per display, each with its own sources and settings</li></ul>
+        <div class="app-tags"><span>Mac app</span><span>Metering</span><span>Dante</span></div>
+      </div>
+    </article>
+
+      <div class="apps-foot back">
+        <p>Questions about an app, or want to try one?</p>
+        <code>software@jeremymilleraudio.com</code>
+        <div class="cta">
+          <a class="btn btn-primary" href="mailto:software@jeremymilleraudio.com">Email software</a>
+          <a class="btn" href="/#software">All apps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>&copy; 2026 Jeremy Miller Audio</span>
+    <nav aria-label="Elsewhere">
+      <a href="https://www.instagram.com/jeremymilleraudio/">Instagram</a>
+      <a href="https://www.linkedin.com/in/jeremy-miller-41660811/">LinkedIn</a>
+      <a href="https://www.newconstellationrmp.com/">New Constellation</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var top = document.getElementById('top'), menu = document.getElementById('menu'), nav = document.getElementById('nav');
+  var setMenu = function (open) { top.classList.toggle('open', open); menu.setAttribute('aria-expanded', open ? 'true' : 'false'); menu.textContent = open ? 'Close' : 'Menu'; };
+  menu.addEventListener('click', function () { setMenu(!top.classList.contains('open')); });
+  nav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+
+  // Each demo plays while it is on screen, unless the visitor prefers reduced motion or has paused it.
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var players = [].slice.call(document.querySelectorAll('.player'));
+  players.forEach(function (fig) {
+    var v = fig.querySelector('video'), b = fig.querySelector('.toggle'), name = fig.parentNode.querySelector('h2').textContent;
+    fig.userPaused = reduce;
+    var sync = function () { var playing = !v.paused; b.textContent = playing ? 'Pause' : 'Play'; b.setAttribute('aria-label', (playing ? 'Pause ' : 'Play ') + name + ' demo'); };
+    v.addEventListener('play', sync); v.addEventListener('pause', sync);
+    b.addEventListener('click', function () {
+      if (v.paused) { fig.userPaused = false; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      else { fig.userPaused = true; v.pause(); }
+    });
+    sync();
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var fig = e.target, v = fig.querySelector('video');
+        if (e.isIntersecting && e.intersectionRatio > 0.45) {
+          if (!fig.userPaused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        } else if (!v.paused) v.pause();
+      });
+    }, { threshold: [0, 0.45, 0.8] });
+    players.forEach(function (fig) { io.observe(fig); });
+  }
+})();
+</script>
+</body>
+</html>
