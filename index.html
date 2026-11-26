@@ -24,7 +24,7 @@
 <meta name="twitter:description" content="Jeremy Miller is an audio designer and A1 mix engineer for live shows, broadcast, corporate events and the studio: front of house, system design and tuning, recording, mixing and mastering.">
 <meta name="twitter:image" content="https://www.jeremymilleraudio.com/share.jpg">
 <link rel="preload" as="image" href="hero.jpg" imagesrcset="hero-sm.jpg 1000w, hero.jpg 2000w" imagesizes="100vw">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.jeremymilleraudio.com/#website","url":"https://www.jeremymilleraudio.com/","name":"Jeremy Miller Audio","description":"Jeremy Miller is an audio designer and A1 mix engineer for live shows, broadcast, corporate events and the studio: front of house, system design and tuning, recording, mixing and mastering.","inLanguage":"en"},{"@type":"Person","@id":"https://www.jeremymilleraudio.com/#jeremy","name":"Jeremy Miller","url":"https://www.jeremymilleraudio.com/","image":"https://www.jeremymilleraudio.com/jeremy-miller.jpg","jobTitle":"Audio designer and A1 mix engineer","email":"jeremy@jeremymilleraudio.com","knowsAbout":["Live sound mixing","Front of house engineering","Broadcast audio","Corporate event audio","Sound system design","Sound system tuning","Studio mixing","Remote recording","Mastering"],"sameAs":["https://www.instagram.com/jeremymilleraudio/","https://www.linkedin.com/in/jeremy-miller-41660811/"],"affiliation":{"@type":"Organization","name":"New Constellation","url":"https://www.newconstellationrmp.com/"}},{"@type":"ProfessionalService","@id":"https://www.jeremymilleraudio.com/#business","name":"Jeremy Miller Audio","url":"https://www.jeremymilleraudio.com/","image":"https://www.jeremymilleraudio.com/share.jpg","description":"Jeremy Miller is an audio designer and A1 mix engineer for live shows, broadcast, corporate events and the studio: front of house, system design and tuning, recording, mixing and mastering.","email":"jeremy@jeremymilleraudio.com","founder":{"@id":"https://www.jeremymilleraudio.com/#jeremy"},"sameAs":["https://www.instagram.com/jeremymilleraudio/","https://www.linkedin.com/in/jeremy-miller-41660811/"]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.jeremymilleraudio.com/#website","url":"https://www.jeremymilleraudio.com/","name":"Jeremy Miller Audio","description":"Jeremy Miller is an audio designer and A1 mix engineer for live shows, broadcast, corporate events and the studio: front of house, system design and tuning, recording, mixing and mastering.","inLanguage":"en"},{"@type":"Person","@id":"https://www.jeremymilleraudio.com/#jeremy","name":"Jeremy Miller","url":"https://www.jeremymilleraudio.com/","image":"https://www.jeremymilleraudio.com/photos/portrait.jpg","jobTitle":"Audio designer and A1 mix engineer","email":"jeremy@jeremymilleraudio.com","knowsAbout":["Live sound mixing","Front of house engineering","Broadcast audio","Corporate event audio","Sound system design","Sound system tuning","Studio mixing","Remote recording","Mastering"],"sameAs":["https://www.instagram.com/jeremymilleraudio/","https://www.linkedin.com/in/jeremy-miller-41660811/"],"affiliation":{"@type":"Organization","name":"New Constellation","url":"https://www.newconstellationrmp.com/"}},{"@type":"ProfessionalService","@id":"https://www.jeremymilleraudio.com/#business","name":"Jeremy Miller Audio","url":"https://www.jeremymilleraudio.com/","image":"https://www.jeremymilleraudio.com/share.jpg","description":"Jeremy Miller is an audio designer and A1 mix engineer for live shows, broadcast, corporate events and the studio: front of house, system design and tuning, recording, mixing and mastering.","email":"jeremy@jeremymilleraudio.com","founder":{"@id":"https://www.jeremymilleraudio.com/#jeremy"},"sameAs":["https://www.instagram.com/jeremymilleraudio/","https://www.linkedin.com/in/jeremy-miller-41660811/"]}]}</script>
 <title>Jeremy Miller Audio | Live Sound, Broadcast and Studio Mix Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -283,6 +283,21 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .foot a { padding: 6px 0; text-decoration: none; }
 .foot a:hover { color: var(--ink); }
 
+/* Photo bands */
+.bleed { margin: 0; height: clamp(260px, 44vw, 600px); overflow: hidden; background: #000; }
+.bleed img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 55% 55%; }
+.strip { padding-block: clamp(48px, 7vw, 96px); }
+.tri { display: grid; grid-template-columns: 1.35fr 1fr 0.8fr 1fr; gap: 8px; height: clamp(280px, 34vw, 460px); }
+.tri figure { margin: 0; min-width: 0; overflow: hidden; border-radius: 4px; background: var(--surface); }
+.tri img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+@media (hover: hover) { .tri figure:hover img { transform: scale(1.03); } }
+@media (max-width: 760px) { .tri { grid-template-columns: 1fr 1fr; height: auto; } .tri figure { aspect-ratio: 3 / 4; } }
+.sw-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: end; margin-bottom: clamp(32px, 5vw, 56px); }
+.sw-head .head { margin-bottom: 0; }
+.sw-rack { margin: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--line); background: #000; }
+.sw-rack img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 30%; }
+@media (max-width: 900px) { .sw-head { grid-template-columns: 1fr; } }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -402,13 +417,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
           </div>
           <figure class="ph wide"><img src="live-arena.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="An arena concert seen from the front-of-house mix position, with the crowd, stage and video screens under white light beams"></figure>
           <div class="pair">
-            <figure class="ph"><img src="gallery/g40.jpg" width="552" height="310" loading="lazy" decoding="async" alt="DiGiCo console in the foreground facing a crowd under green laser beams"></figure>
-            <figure class="ph"><img src="gallery/g44.jpg" width="553" height="311" loading="lazy" decoding="async" alt="Mixing console on a platform in front of a curved, colorful video wall"></figure>
+            <figure class="ph"><img src="photos/headphones-mix.jpg" width="812" height="1000" loading="lazy" decoding="async" style="object-position:60% 28%" alt="Black and white photo of Jeremy mixing in headphones at a laptop and rack"></figure>
+            <figure class="ph"><img src="photos/rivage-hands.jpg" width="1000" height="746" loading="lazy" decoding="async" style="object-position:55% 50%" alt="Black and white photo of a hand on a Yamaha RIVAGE console, with channel names on the screen"></figure>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <figure class="bleed"><img src="photos/faders.jpg" srcset="photos/faders-sm.jpg 1000w, photos/faders.jpg 2000w" sizes="100vw" width="2000" height="1126" loading="lazy" decoding="async" alt="Black and white close-up of hands on the faders of a digital console"></figure>
 
   <section class="band" id="gallery">
     <div class="wrap">
@@ -543,13 +560,27 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     </div>
   </section>
 
+  <section class="strip" aria-label="Jeremy at work">
+    <div class="wrap">
+      <div class="tri">
+        <figure><img src="photos/over-shoulder.jpg" width="1100" height="847" loading="lazy" decoding="async" style="object-position:55% 40%" alt="Black and white photo over Jeremy's shoulder as he works a Yamaha console"></figure>
+        <figure><img src="photos/profile.jpg" width="656" height="900" loading="lazy" decoding="async" style="object-position:40% 30%" alt="Black and white profile of Jeremy in low light at the mix position"></figure>
+        <figure><img src="photos/headphones-back.jpg" width="414" height="800" loading="lazy" decoding="async" style="object-position:30% 30%" alt="Black and white photo of Jeremy from behind, wearing headphones at the console"></figure>
+        <figure><img src="photos/rivage-side.jpg" width="623" height="900" loading="lazy" decoding="async" style="object-position:62% 35%" alt="Black and white photo of Jeremy mixing at a Yamaha RIVAGE console"></figure>
+      </div>
+    </div>
+  </section>
+
   <section class="band alt" id="software">
     <div class="wrap">
+      <div class="sw-head">
       <div class="head">
-        <p class="eyebrow">Software</p>
-        <h2>Audio applications</h2>
-        <p>Tools Jeremy builds to solve problems he meets on live shows and in the studio.</p>
-        <div class="cta" style="margin-top:22px"><a class="btn btn-primary" href="/software/">Watch the demos <span class="arr" aria-hidden="true">&rarr;</span></a></div>
+          <p class="eyebrow">Software</p>
+          <h2>Audio applications</h2>
+          <p>Tools Jeremy builds to solve problems he meets on live shows and in the studio.</p>
+          <div class="cta" style="margin-top:22px"><a class="btn btn-primary" href="/software/">Watch the demos <span class="arr" aria-hidden="true">&rarr;</span></a></div>
+        </div>
+        <figure class="sw-rack"><img src="photos/rack.jpg" width="1400" height="1123" loading="lazy" decoding="async" alt="A rack lit in the dark with a Fourier Audio transform.engine, a Metric Halo interface and a Waves MaxxBCL"></figure>
       </div>
       <div class="apps">
         <article class="app app-wide">
@@ -641,7 +672,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <section class="band" id="about">
     <div class="wrap">
       <div class="about-grid">
-        <figure class="portrait"><img src="jeremy-miller.jpg" width="1024" height="1024" loading="lazy" decoding="async" alt="Headshot of Jeremy Miller in a navy suit and gray tie"></figure>
+        <figure class="portrait"><img src="photos/portrait.jpg" width="949" height="1200" loading="lazy" decoding="async" alt="Jeremy Miller smiling, leaning on a Yamaha RIVAGE console with a set list taped beside the screen"></figure>
         <div class="prose">
           <p class="eyebrow">About</p>
           <h2>Jeremy Miller</h2>
